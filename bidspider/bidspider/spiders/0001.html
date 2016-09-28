@@ -1,0 +1,1382 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>高级搜索-招标采购信息搜索 </title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=6;IE=7;IE=9;" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link type="images/x-icon" href="/public/search/zbw/images/favicon.ico" rel="shortcut icon"></link>
+        <!--<link rel="stylesheet" href="/public/search/searchadvzbxx/test/css/style.css"  type="text/css" />-->
+        <script type="text/javascript">
+            document.write("<link rel='stylesheet' href='/public/search/searchadvzbxx/test/css/style.css'  type='text/css' />");
+        </script>
+        <script src="/public/javascripts/jquery-1.8.2.min.js" type="text/javascript"></script>
+        <script type="text/javascript" src="/public/javascripts/common/jquery.cookie.js"></script>
+        <script src="/public/javascripts/common/jquery.flash.js" language="javascript" type="text/javascript"></script>
+        <script src="/public/javascripts/common/jquery.lazyload.js" language="javascript" type="text/javascript"></script> 
+        <script src="/public/search/javascripts/comm_select_1.js" type="text/javascript" charset="utf-8"></script>             
+        <script src="/public/javascripts/common/jquery.floatDiv.js" type="text/javascript" charset="utf-8"></script>
+        <script>
+            $(function() {
+                var left = $("#g_zheng").offset().left;
+                $("#erweima_l").css("left",left - 120);
+                $("#erweima_r").css("left",left + $("#g_zheng").width() + 10);
+                $("#erweima_l").show();
+                $("#erweima_r").show();
+            });
+
+            //鼠标滚动事件
+            $(window).scroll(function() {//滚动时触发函数                             
+                $("#erweima_l").stop(true,false).animate({"top": $(window).scrollTop() + 40},500);
+                $("#erweima_r").stop(true,false).animate({"top": $(window).scrollTop() + 40},500);
+            });
+
+            //窗口改变事件
+            $(window).resize(function() {
+                var left = $("#g_zheng").offset().left;
+                $("#erweima_l").stop(true,false).animate({"left": left - 120},500);
+                $("#erweima_r").stop(true,false).animate({"left": left + $("#g_zheng").width() + 10},500);
+            });
+
+            //高级搜索优化20160301
+            //点击文字选中(栏目)
+            function table_wz_click2(obj) {
+                if($(obj).prev().attr("checked"))
+                    $(obj).prev().attr("checked", false);
+                else
+                    $(obj).prev().attr("checked", true);
+                //var $tmp = $("#checkAll_table_zb").siblings("input:checkbox");
+                //$('#checkAll_table_zb').attr('checked', $tmp.length == $tmp.filter(':checked').length);
+            }
+            //点击文字选中(地区)
+            function area_wz_click2(obj) {
+                //注意此处用 $(obj).prev().click()不能解决问题
+                if($(obj).prev().attr("checked"))
+                    $(obj).prev().attr("checked", false);
+                else
+                    $(obj).prev().attr("checked", true);
+            }
+            ////点击文字选中(行业)
+            function category_wz_click2(obj) {
+                if($(obj).prev().attr("checked"))
+                    $(obj).prev().attr("checked", false);
+                else
+                    $(obj).prev().attr("checked", true);
+            }
+        </script>
+        <style type="text/css">
+            .dy { margin-left:5px;margin-right:5px;margin-top:-3px;vertical-align:middle;cursor:pointer; }
+            a:hover { color:#2176bd; }
+        </style>
+    </head>
+    <body>
+    <!--top_start-->
+    <div class="quanbu">
+        <div class="wamp">
+            <div style="width:110px;height:180px;position:absolute;top:40px;z-index:66;display:none;" id="erweima_l">
+            <!--<a target="_blank" href="http://app.chinabidding.com.cn/">
+                    <img style="padding-left:2px;" src="/public/search/images/fuchuang_app.gif"/>
+                </a>-->
+            </div>
+            <div style="width:110px;height:180px;position:absolute;top:40px;z-index:666;display:none;" id="erweima_r">
+                <a target="_blank" href="/public/static/KFZX/weixin/index.html">
+                    <img style="padding-left:2px;" src="/public/cblcn/index3/images/fu_chuang.jpg"/>
+                </a>
+            </div>
+            <style type="text/css">
+    .quanbu{background:url(/public/cblcn/index3/images/bg_top.jpg) repeat-x;width:auto;height:auto}
+    //.top{width:950px;height:30px;margin-bottom:10px;line-height:30px;color:#000;margin:0 auto;position:relative}
+    .top {
+        width: 950px;
+        height: 30px;
+        margin-bottom: 10px;
+        line-height: 30px;
+        color: #000
+    }
+
+    .list {
+        color: #E0E0E0
+    }
+
+    .top_left {
+        width:614px;
+        height: 30px;
+        float: left;
+    }
+
+    .top_left a {
+        color: #2b86cb
+    }
+
+    .top_left_dl {
+        width:635px;
+        height: 30px;
+        float: left;
+    }
+
+    .top_left_dl a {
+        color: #2b86cb
+    }
+
+    .top_right {
+        width: 301px;
+        height: 30px;
+        float: right;
+        position: relative
+    }
+
+    .img {
+        width: 10px;
+        height: 11px;
+        position:absolute;
+        left:-15px;
+
+    }
+
+    .dsj {
+        width: 7px;
+        height: 4px;
+        vertical-align: middle;
+        display: block;
+        float: right;
+        position: absolute;
+        left: 300px;
+        top: 13px;
+        _top: 6px
+    }
+
+    .tian {
+        width: 218px;
+        height: 30px;
+        float: left;
+        line-height: 30px;
+        margin-left: 2px
+    }
+
+    .er_caidan {
+        width: 70px;
+     
+        position: absolute;
+        left: 230px;
+        top: 30px;
+        _top: 1px;
+    }
+
+    .hangjj {
+        width: 63px;
+        height: 27px;
+        line-height: 27px;
+        padding-left: 5px
+    }
+
+    .hangjj a:hover {
+        color: #2b86cb;
+    }
+    .i_xin {
+        float: right;
+        height: 30px;
+        line-height: 30px;
+    }
+    .ke li {
+        width: 70px;
+        height: 30px;
+        line-height: 30px;
+        float: right;
+        position: absolute;
+        top: -30px;
+        _top:8px
+    }
+    .tuij_out1 {
+        height: 24px;
+        padding-left: 5px;
+        position: absolute;
+    }
+
+    .tuij_over_1 {
+        -moz-border-bottom-colors: none;
+        -moz-border-left-colors: none;
+        -moz-border-right-colors: none;
+        -moz-border-top-colors: none;
+        background: #fff none repeat scroll 0 0;
+        border-color: #ddd #ddd -moz-use-text-color;
+        border-image: none;
+        border-style: solid solid none;
+        border-width: 1px 1px medium;
+        height: 24px;
+        padding-left: 5px;
+        position: absolute;
+        width: 63px;
+    }
+    .phone{vertical-align: 4px;padding-left:0px;color:#cc2208;margin-left:50px;}
+    .phone1{vertical-align: 4px;padding-left:0px;color:#cc2208;margin-left:36px;}
+    #kehufuwu_div2{padding-top:25px;}
+    
+    #kehufuwu_div1 a{color:#666}
+    #kehufuwu_div1 a:hover{color:#2176bd}
+    #kehufuwu_div2 a{color:#666}
+    #kehufuwu_div2 a:hover{color:#2176bd}
+</style>
+
+<div class="top">
+    <div style="display:block;" id="top_left" class="top_left">
+        <div style="float:left">欢迎来到采购与招标网！请 <a href="/cblcn/member.login/login" rel="nofollow">登录</a></div>
+        <div style="float:left;padding-left:5px" >  <a href="/cblcn/member.regist/regist_one?ggw_id=1570" target="_blank" class="zhuceruku_b">免费注册</a></div>
+        &nbsp;<a href="/zbw/zbxx/fbxx/fbgg/index.jsp" style="color:#333;vertical-align: 10px">【发布信息】</a>
+        <span class="phone"><img id="phoneImg" src="/public/cblcn/index3/images/phone.png" style="vertical-align:0;"><span style="vertical-align:6px;padding-left:5px;font-size:13px;">服务热线：400-006-6655 </span></span>
+    </div>
+    <div id="top_left_dl" class="top_left_dl" style="display:none;">
+        <span style="vertical-align:9px;">
+            您好!<span id="ajax_name"></span> 
+            <a href="javascript:;" id="playLoginOut">退出</a>
+            <a target="_blank" href="/cblcn/zzmb/xgmm">修改密码</a> 
+            <a target="_blank" href="/cblcn/kfzx/gxh_index">个性化定制</a> 
+            <a href="/zbw/zbxx/fbxx/fbgg/index.jsp" rel="nofollow" target="_blank">发布信息</a>
+            <a href="/cblcn/busiroom/home" target="_blank"><font color="#A52500">【我的商务室】</font></a>
+        </span>
+        <span class="phone1"><img id="phoneImg2" src="/public/cblcn/index3/images/phone.png" style="vertical-align:0;"><span style="vertical-align:6px;padding-left:5px;font-size:13px;">服务热线：400-006-6655 </span></span>
+    </div>
+    <div class="top_right">
+        <div>
+           
+            <div class="ke">                                                                                                                                                                                               
+                <ul style="left:228px;" class="er_caidan" id="kehufuwu_ul">
+                    <li>
+                        <div id="kehufuwu_div1" class="tuij_out1" style="height:30px">
+                            <a href="/kfzx/" target="_blank">客户服务</a>
+                            <img src="/public/cblcn/index3/images/daosj.jpg" style="margin-right:2px;"/>
+                        </div>
+                        <div style="background:rgb(255,255,255) none repeat scroll 0% 0%;border:1px solid rgb(221,221,221);width:68px;height:auto;display:none;" id="kehufuwu_div2">
+                            <p class="hangjj"><a href="/kfzx/cjwt/" target="_blank">常见问题</a></p>
+                            <p class="hangjj"><a href="/public/cblcn/pdf/agreement5.pdf" target="_blank">下载协议</a></p>
+                          
+                        </div>
+                    </li>
+                </ul>  
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function() {
+        var da = new Date();
+        $.ajax({
+            async: false,
+            type: "post",
+            url: '/cblcn/Home/logincheck?t=' + da.getTime(),
+            dataType: "json",
+            success: function(date) {
+                $('.js_name ').empty();
+                if (date == null || date == "" || date.login_id == "") {
+                    $('#top_left').css("display", "block");
+                    $('#top_left_dl').css("display", "none");
+                    //处理搜索框右侧
+                    $("#login_before").show();
+                    $("#login_after").hide();
+                    //给登录链接赋值
+                    var url = document.location.href;
+                    $("#playLoginIn").attr("href", "/cblcn/member.login/login?url=" + url);
+                } else {
+                    $("#ajax_name").text(date.login_id);
+                    var name2 = date.login_id.length > 13 ? date.login_id.substring(0, 13) + "..." : date.login_id;
+                    $("#ajax_name2").text(name2);
+                    $('#top_left_dl').css("display", "block");
+                    $('#top_left').css("display", "none");
+                    //处理搜索框右侧
+                    $("#login_before").hide();
+                    $("#login_after").show();
+                    //给退出链接赋值
+                    //var url = document.location.href;  //目前ngnix跳转有问题
+                    var url = "/";
+                    $("#playLoginOut").attr("href", "/cblcn/Home/logout2?sid=" + date.session_id + "&url=" + url);
+                }
+            }
+        });
+    });
+
+
+    $(function() {
+//        $("#kehufuwu_ul  li").hover(function(){
+//            $(this).find("div").show();
+//            $(this).find("img").attr("src","/public/cblcn/index3/images/daosj1_05.jpg");
+//        },function(){
+//             $(this).find("div").hide();
+//            $(this).find("img").attr("src","/public/cblcn/index3/images/daosj.jpg");
+//        });
+        $("#kehufuwu_ul").hover(
+                function() {
+                    $("#kehufuwu_div2").show();
+                    $("#kehufuwu_div1").removeClass();
+                    $("#kehufuwu_div1").addClass("tuij_over_1");
+                    $(this).find("img").attr("src", "/public/cblcn/index3/images/daosj1_05.jpg");
+                },
+                function() {
+                    $("#kehufuwu_div2").hide();
+                    $("#kehufuwu_div1").removeClass();
+                    $("#kehufuwu_div1").addClass("tuij_out1");
+                    $("#kehufuwu_div1").show();
+                    $(this).find("img").attr("src", "/public/cblcn/index3/images/daosj.jpg");
+                }
+        );
+    });
+    //添加到收藏夹
+    function addCookie() {
+        var fanhui = confirm("为了方便你的使用，是否将‘采购与招标网’添加至收藏夹？");
+        if (fanhui) {
+            if (document.all) {
+                window.external.AddFavorite('/', '采购与招标网');
+            } else if (window.sidebar) {
+                window.sidebar.addPanel('采购与招标网', '/', "");
+            }
+        }
+    }
+</script>
+            <!--top_end-->    
+            <div class="logo">
+                <div class="log_l fl"><a href="/" target="_blank"><img width="263" style="border:none;" src="/public/search/zbw/images/logo_3.jpg" /></a></div>
+            <!--<div class="log_r fr" style="display:none;"></div>-->
+                <div id = "search_adv_top" style="width:600px;height:90px;float:right;margin-top:10px;"></div>
+            </div>
+            <div class="g_zheng" id="g_zheng">
+                <input type="hidden" id="loginId" value="" />
+                <input type="hidden" id="s_type" value="0" />
+                <input type="hidden" id="logid" value="802984933" />
+                <div class="top1"><p class="fl">招标采购信息搜索</p>
+                    <span class="xmss fl"><a href="/search/searchadvxmxx/search3"   style="width:147px;height:38px;display:block;">项目信息搜索</a></span> 
+                    <div style="float:right;padding-right:40px;"><a id="savec_btn" href="javascript:saveCondition();" style="font-size:12px;font-weight:100;color:#2176bd;">保存搜索条件</a></div>
+                </div>
+                <form class="wenben"  id="searchgjForm" action="/search/Searchgj/zbcg" method="get">
+                    <div class="quanxuan fl" id="table_x" onclick="type_x();" title="">栏目：全选</div>
+                    <input type="hidden" value="1,2,4,5," id="table_type" name="table_type"/>
+                    <input id="text_x" name="text_x" class="sousuok fl" value="输入您想查找的关键词 多个词可以输入空格隔开！" onfocus="changeBegin()" style="color:#d6a889;display:none;" />
+                    <input id="text" name="keywords" class="sousuok fl" value="城市轨道" />
+                    <div class="neir fl" id="search_x" onclick="search_click(0)">-内容-</div>
+                    <input type="hidden" value="TITLE" id="search_type" name="search_type"/>
+                    <!--内容划过start-->
+                    <ul class="neir_hua" id="dialog-search" style="display:none;">
+                        <li ><a href="javaScript:search_click('TITLE')">标题</a></li>
+                        <li><a href="javaScript:search_click('CONTEXT')">内容</a></li>
+                        <li><a href="javaScript:search_click('FJ')">附件</a></li>
+                        <li><a href="javaScript:search_click('BIDDINGNO')">招标编号</a></li>
+                    </ul>
+                    <!--内容划过end-->
+                    <div class="quanxuan fl" id="area_x" onclick="area_click()">地区：全选</div>
+                    <input type="hidden" value="5,6," id="areaid" name="areaid"/>
+                    <div class="quanxuan fl" id="category_x" onclick="category_click()">行业：全选</div> 
+                    <input type="hidden" value="1,2" id="categoryid" name="categoryid"/>
+                    <div class="neir fl" id="date_x" onclick="date_click(0)" style="padding-left:10px;width:63px;">近一周</div>
+                    <input type="hidden" value="year" id="b_date" name="b_date"/>
+                    <!--日期划过start-->
+                    <ul class="neir_hua riqi"  id="dialog-date" style="display: none">
+                        <li><a href="javaScript:date_click('day')">近一天</a></li>
+                        <li><a href="javaScript:date_click('week')">近一周</a></li>
+                        <li><a href="javaScript:date_click('two')">近二周</a></li>
+                        <li><a href="javaScript:date_click('month')">近一月</a></li>
+                        <li><a href="javaScript:date_click('quarter')">近三月</a></li>
+                        <li><a href="javaScript:date_click('year')">近一年</a></li>
+                    </ul>
+                    <!--日期划过end-->
+                    <input type="button" value="开始搜索" class="ss_anniu" onclick="submitForm();"/>
+                    <a href="/search/Searchgj/zbcg" title="重置" style="vertical-align:-3px;"><img src="/public/search/searchadvzbxx/test/images/chongz.png" /></a>
+                </form>
+            </div>
+            <div id = "search_adv_button"></div>
+            <!--<div class="bao_c" id="ts1"><img src="/public/search/searchadvzbxx/test/images/baoc.png" /></div>
+                <div class="bao_c1" id="ts2"><img src="/public/search/searchadvzbxx/test/images/cz.png" /></div>-->
+            <!--栏目全选弹出框开始-->
+            <div class="tanc_lanmu" id="dialog-table" style="display:none;">
+                <div class="guanbi"><a href="javascript:;" onclick="qx_table()"><img src="/public/search/searchadvzbxx/test/images/x_07.jpg" /></a></div>
+                <div class="anniu">
+                    <input type="button" value="全部栏目" class="qb_anniu" onclick="quan_table()"/>
+                    <input type="button" value="反选" class="fx_anniu" onclick="fan_table()"/>
+                    <span style="font-size:11px;padding-left:5px;color:#999">反选将当前选中的变为不选，未选的全部变为选中。</span>
+                </div>
+                <ul class="q_neir">
+                    <li>
+                        <input type="checkbox" name="table" value="1" class="dy" />
+                        <a onclick="table_wz_click2(this);" href="javascript:;">工程招标&nbsp;&nbsp;&nbsp;&nbsp;</a>
+                        <input type="checkbox" name="table" value="2" class="dy" />
+                        <a onclick="table_wz_click2(this);" href="javascript:;">货物招标&nbsp;&nbsp;&nbsp;&nbsp;</a>
+                        <input type="checkbox" name="table" value="3" class="dy" />
+                        <a onclick="table_wz_click2(this);" href="javascript:;">服务招标&nbsp;&nbsp;&nbsp;&nbsp;</a>
+                    </li>
+                    <li>
+                        <input type="checkbox" name="table" value="4" class="dy" />
+                        <a onclick="table_wz_click2(this);" href="javascript:;">招标预告&nbsp;&nbsp;&nbsp;&nbsp;</a>
+                        <input type="checkbox" name="table" value="5" class="dy" />
+                        <a onclick="table_wz_click2(this);" href="javascript:;">中标公示</a>
+                    </li>
+                    <li>
+                        <input type="checkbox" name="table"  value="6" class="dy" />
+                        <a onclick="table_wz_click2(this);" href="javascript:;">政府采购&nbsp;&nbsp;&nbsp;&nbsp;</a>
+                        <input type="checkbox" name="table"  value="7" class="dy" />
+                        <a onclick="table_wz_click2(this);" href="javascript:;">企业采购</a>
+                    </li>
+                </ul>
+                <div class="qr_qx"><input type="button" class="quer" onclick="qd_table()"/><input type="button" class="quer qux" onclick="qx_table()"/></div>
+            </div>
+            <!--栏目全选弹出框结束-->
+            <!--地区全选弹出框开始-->
+            <div class="tanc_lanmu"  id="dialog-area" style="width:475px;display: none">
+                <div class="guanbi fr"><a href="javascript:;" onclick="qx_area()"><img src="/public/search/searchadvzbxx/test/images/x_07.jpg" /></a></div>
+                <div class="anniu">
+                    <input type="button" value="全部地区" class="qb_anniu" onclick="quan_area()"/>
+                    <input type="button" value="反选" class="fx_anniu" onclick="fan_area()"/>
+                    <span style="font-size:11px;padding-left:5px;color:#999">反选将当前选中的变为不选，未选的全部变为选中。</span>
+                </div>
+                <ul class="q_neir" id="area_ul" style="width:465px;">
+                    <li id="l1">
+                        <input type="button" class="diqu_an" value="华北" onclick="area_l1()" />
+                        <input type="checkbox" name="area" value="1" class="dy"/>
+                        <a onclick="area_wz_click2(this);" href="javascript:;">北京</a>
+                        <input type="checkbox" name="area" value="3" class="dy"/>
+                        <a onclick="area_wz_click2(this);" href="javascript:;">天津</a>
+                        <input type="checkbox" name="area" value="5" class="dy"/>
+                        <a onclick="area_wz_click2(this);" href="javascript:;">河北</a>
+                        <input type="checkbox" name="area" value="6" class="dy"/>
+                        <a onclick="area_wz_click2(this);" href="javascript:;">山西</a>
+                        <input type="checkbox" name="area" value="7" class="dy"/>
+                        <a onclick="area_wz_click2(this);" href="javascript:;">内蒙古</a>
+                    </li>
+                    <li id="l2"  style="width:465px;">
+                        <input type="button" class="diqu_an" value="华东" onclick="area_l2()"/>
+                        <input type="checkbox" name="area" value="2" class="dy"/>
+                        <a onclick="area_wz_click2(this);" href="javascript:;">上海</a>
+                        <input type="checkbox" name="area" value="16" class="dy"/>
+                        <a onclick="area_wz_click2(this);" href="javascript:;">山东</a>
+                        <input type="checkbox" name="area" value="11" class="dy"/>
+                        <a onclick="area_wz_click2(this);" href="javascript:;">江苏</a>
+                        <input type="checkbox" name="area" value="13" class="dy"/>
+                        <a onclick="area_wz_click2(this);" href="javascript:;">安徽</a>
+                        <input type="checkbox" name="area" value="15" class="dy"/>
+                        <a onclick="area_wz_click2(this);" href="javascript:;">江西</a>
+                        <input type="checkbox" name="area" value="12" class="dy"/>
+                        <a onclick="area_wz_click2(this);" href="javascript:;">浙江</a>
+                        <input type="checkbox" name="area" value="14" class="dy"/>
+                        <a onclick="area_wz_click2(this);" href="javascript:;">福建</a>
+                    </li>
+                    <li id="l3">
+                        <input type="button" class="diqu_an" value="华中"  onclick="area_l3()" />
+                        <input type="checkbox" name="area" value="18" class="dy"/>
+                        <a onclick="area_wz_click2(this);" href="javascript:;">湖北</a>
+                        <input type="checkbox" name="area" value="19" class="dy"/>
+                        <a onclick="area_wz_click2(this);" href="javascript:;">湖南</a>
+                        <input type="checkbox" name="area" value="17" class="dy"/>
+                        <a onclick="area_wz_click2(this);" href="javascript:;">河南</a>
+                    </li>
+                    <li id="l4">
+                        <input type="button" class="diqu_an" value="华南" onclick="area_l4()"/>
+                        <input type="checkbox" name="area" value="20" class="dy"/>
+                        <a onclick="area_wz_click2(this);" href="javascript:;">广东</a>
+                        <input type="checkbox" name="area" value="21" class="dy"/>
+                        <a onclick="area_wz_click2(this);" href="javascript:;">广西</a>
+                        <input type="checkbox" name="area" value="22" class="dy"/>
+                        <a onclick="area_wz_click2(this);" href="javascript:;">海南</a>
+                    </li>
+                    <li id="l5">
+                        <input type="button" class="diqu_an" value="东北" onclick="area_l5()"/>
+                        <input type="checkbox" name="area" value="8" class="dy"/>
+                        <a onclick="area_wz_click2(this);" href="javascript:;">辽宁</a>
+                        <input type="checkbox" name="area" value="9" class="dy"/>
+                        <a onclick="area_wz_click2(this);" href="javascript:;">吉林</a>
+                        <input type="checkbox" name="area" value="10" class="dy"/>
+                        <a onclick="area_wz_click2(this);" href="javascript:;">黑龙江</a>
+                    </li>
+                    <li id="l6"><input type="button" class="diqu_an" value="西北"  onclick="area_l6()"/>
+                        <input type="checkbox" name="area" value="26" class="dy"/>
+                        <a onclick="area_wz_click2(this);" href="javascript:;">陕西</a>
+                        <input type="checkbox" name="area" value="28" class="dy"/>
+                        <a onclick="area_wz_click2(this);" href="javascript:;">甘肃</a>
+                        <input type="checkbox" name="area" value="31" class="dy"/>
+                        <a onclick="area_wz_click2(this);" href="javascript:;">宁夏</a>
+                        <input type="checkbox" name="area" value="30" class="dy"/>
+                        <a onclick="area_wz_click2(this);" href="javascript:;">新疆</a>
+                        <input type="checkbox" name="area" value="29" class="dy"/>
+                        <a onclick="area_wz_click2(this);" href="javascript:;">青海</a>
+                    </li>
+                    <li id="l7">
+                        <input type="button" class="diqu_an" value="西南" onclick="area_l7()"/>
+                        <input type="checkbox" name="area" value="4" class="dy"/>
+                        <a onclick="area_wz_click2(this);" href="javascript:;">重庆</a>
+                        <input type="checkbox" name="area" value="27" class="dy"/>
+                        <a onclick="area_wz_click2(this);" href="javascript:;">四川</a>
+                        <input type="checkbox" name="area" value="23" class="dy"/>
+                        <a onclick="area_wz_click2(this);" href="javascript:;">贵州</a>
+                        <input type="checkbox" name="area" value="24" class="dy"/>
+                        <a onclick="area_wz_click2(this);" href="javascript:;">云南</a>
+                        <input type="checkbox" name="area" value="25" class="dy"/>
+                        <a onclick="area_wz_click2(this);" href="javascript:;">西藏</a>
+                    </li>
+                    <li style="padding-left:40px">
+                        <input type="checkbox" name="area" value="36" class="dy"/>
+                        <a onclick="area_wz_click2(this);" href="javascript:;">跨省</a>
+                    </li>
+                    <li id="l8" style="padding-left:40px;">
+                    <!--<input type="button" class="diqu_an" value="跨省"  onclick="area_l8()"/>-->
+                        <input type="checkbox" name="area" value="32" class="dy"/>
+                        <a onclick="area_wz_click2(this);" href="javascript:;">香港</a>
+                        <input type="checkbox" name="area" value="33" class="dy"/>
+                        <a onclick="area_wz_click2(this);" href="javascript:;">澳门</a>
+                        <input type="checkbox" name="area" value="34" class="dy"/>
+                        <a onclick="area_wz_click2(this);" href="javascript:;">台湾</a>
+                    </li>
+                    <li style="padding-left:40px">
+                        <input type="checkbox" name="area" value="40" class="dy"/>
+                        <a onclick="area_wz_click2(this);" href="javascript:;">海外</a>
+                    </li>
+                </ul>
+                <div class="qr_qx"><input type="button" class="quer" onclick="qd_area()"/><input type="button" class="quer qux" onclick="qx_area()"/></div>
+            </div>
+            <!--地区全选弹出框结束-->
+            <!--行业全选弹出框开始-->
+            <div class="tanc_lanmu" id="dialog-category" style="display:none;">
+                <div class="guanbi fr" onclick="qx_category()"><a href="javascript:;"><img src="/public/search/searchadvzbxx/test/images/x_07.jpg" /></a></div>
+                <div class="anniu">
+                    <input type="button" value="全部行业" class="qb_anniu" onclick="quan_category()"/>
+                    <input type="button" value="反选" class="fx_anniu" onclick="fan_category()"/>
+                    <span style="font-size:11px;padding-left:5px;color:#999">反选将当前选中的变为不选，未选的全部变为选中。</span>
+                </div>
+                <ul class="q_neir">
+                    <li>
+                        <p class="q_kuang"><input type="checkbox" name="category"  value="1" class="dy"/><a onclick="category_wz_click2(this);" href="javascript:;">交通运输</a></p>
+                        <p class="q_kuang"><input type="checkbox" name="category" value="3"  class="dy"/><a onclick="category_wz_click2(this);" href="javascript:;">市政房地产建筑</a></p>
+                        <p class="q_kuang"><input type="checkbox" name="category" value="4"  class="dy"/><a onclick="category_wz_click2(this);" href="javascript:;">水利桥梁</a></p>
+                    </li>
+                    <li>
+                        <p class="q_kuang"><input type="checkbox" name="category" value="17"   class="dy"/><a onclick="category_wz_click2(this);" href="javascript:;">能源</a></p>
+                        <p class="q_kuang"><input type="checkbox" name="category" value="18"  class="dy"/><a onclick="category_wz_click2(this);" href="javascript:;">化工</a></p>
+                        <p class="q_kuang"><input type="checkbox" name="category" value="6"  class="dy"/><a onclick="category_wz_click2(this);" href="javascript:;">环保</a></p>
+                    </li>
+                    <li>
+                        <p class="q_kuang"><input type="checkbox" name="category" value="10"   class="dy"/><a onclick="category_wz_click2(this);" href="javascript:;">冶金矿产原材料</a></p>
+                        <p class="q_kuang"><input type="checkbox" name="category" value="5"  class="dy"/><a onclick="category_wz_click2(this);" href="javascript:;">机械电子电器</a></p>
+                        <p class="q_kuang"><input type="checkbox" name="category" value="2"  class="dy"/><a onclick="category_wz_click2(this);" href="javascript:;">网络通讯计算机</a></p>
+                    </li>
+                    <li>
+                        <p class="q_kuang"><input type="checkbox" name="category" value="8"   class="dy"/><a onclick="category_wz_click2(this);" href="javascript:;">医疗卫生</a></p>
+                        <p class="q_kuang"><input type="checkbox" name="category" value="16"  class="dy"/><a onclick="category_wz_click2(this);" href="javascript:;">园林绿化</a></p>
+                        <p class="q_kuang"><input type="checkbox" name="category" value="14"  class="dy"/><a onclick="category_wz_click2(this);" href="javascript:;">商业服务</a></p>
+                    </li>
+                    <li>
+                        <p class="q_kuang"><input type="checkbox" name="category" value="11"   class="dy"/><a onclick="category_wz_click2(this);" href="javascript:;">出版印刷</a></p>
+                        <p class="q_kuang"><input type="checkbox" name="category" value="12"  class="dy"/><a onclick="category_wz_click2(this);" href="javascript:;">轻工纺织食品</a></p>
+                        <p class="q_kuang"><input type="checkbox" name="category" value="13"  class="dy"/><a onclick="category_wz_click2(this);" href="javascript:;">农林牧渔</a></p>
+                    </li>
+                    <li>
+                        <p class="q_kuang"><input type="checkbox" name="category" value="9"  class="dy"/><a onclick="category_wz_click2(this);" href="javascript:;">科技文教旅游</a></p>
+                        <p class="q_kuang"><input type="checkbox" name="category" value="15"  class="dy"/><a onclick="category_wz_click2(this);" href="javascript:;">其它</a></p>
+                    </li>
+                </ul>
+                <div class="qr_qx1"><input type="button" class="quer" onclick="qd_category()"/><input type="button" class="quer qux" onclick="qx_category()"/></div>
+            </div>
+            <!--行业全选弹出框结束-->
+            <!--广告位-->
+            <div class="guang_3" style="display:none;"><img src="#" /></div>
+            <!--广告位-->
+            <div class="guanjc" id="searchC">
+            <!--<span class="param-selected"><a  href="" title=""> </a><span class="close-icon"><img onclick="" src="/public/search/searchadvzbxx/test/images/x_03.jpg" /></span></span>-->
+            </div>
+        <!--<div class="lieb">
+                <p class="lie_b">共搜索出 <span>123456</span> 条记录，用时 <span>0.01</span> 秒，仅提供 <span>4000</span> 条。 <a href="#">上一页</a>    <a href="#">下一页</a></p>
+                <table cellpadding="0" style="width:1003px;height:auto;">
+                    <tr>
+                        <td style="height:45px;line-height: 45px;border-bottom:1px dashed #ead5b7;width:600px;"><a href="#" title="#" style="background:url(/public/search/searchadvzbxx/test/images/dian_11.jpg) no-repeat left center;padding-left:10px;">寻甸回族彝族自治县农村信用合作联社2015年度服务礼仪培训服务（重新招标）招标公告</a></td>
+                        <td style="height:45px;line-height: 45px;border-bottom:1px dashed #ead5b7;width:100px;text-align: center"><img src="/public/search/searchadvzbxx/test/images/souc_11.jpg" style="vertical-align:-3px;padding-right:5px" />收藏</td>
+                        <td style="height:45px;line-height: 45px;border-bottom:1px dashed #ead5b7;width:100px;text-align: center">云南</td>
+                        <td style="height:45px;line-height: 45px;border-bottom:1px dashed #ead5b7;width:100px;text-align: center">商业服务</td>
+                        <td style="height:45px;line-height: 45px;border-bottom:1px dashed #ead5b7;width:100px;text-align: center">2015-04-13 </td> 
+                    </tr>
+                </table>
+            </div>-->
+            <div class="lieb">
+            
+                <style>
+    table tr td a:hover{color:#2176bd}
+    table tr td a:visited{color:#800080}
+</style>
+
+<table cellspacing="0" cellpadding="0" border="0" align="center" width="1003">
+    <!--DWLayoutTable-->
+    <tbody>
+        <tr>
+            <td width="1003">
+                
+                <script language="JavaScript">
+                    //点击事件
+                    function LTClick(obj) {
+                        if (window.choice_click)
+                            return choice_click(obj.value, obj);
+                    }
+                </script>
+                <!---分页-->
+                <div id="pages" align="center" style="width:1003px;height:40px;line-height:30px;margin-top:5px;margin-bottom:12px;font-size:12px">
+                    
+                    <a href="/search/searchgj/zbcg?rp=30&categoryid=1%2C2&keywords=%E5%9F%8E%E5%B8%82%E8%BD%A8%E9%81%93&page=1&areaid=5%2C6%2C&table_type=1%2C2%2C4%2C5%2C&search_type=TITLE&b_date=year" >第一页</a>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    <a href="/search/searchgj/zbcg?rp=30&categoryid=1%2C2&keywords=%E5%9F%8E%E5%B8%82%E8%BD%A8%E9%81%93&page=2&areaid=5%2C6%2C&table_type=1%2C2%2C4%2C5%2C&search_type=TITLE&b_date=year" >2</a>
+                    
+                    
+                    
+                    <a href="/search/searchgj/zbcg?rp=30&categoryid=1%2C2&keywords=%E5%9F%8E%E5%B8%82%E8%BD%A8%E9%81%93&page=3&areaid=5%2C6%2C&table_type=1%2C2%2C4%2C5%2C&search_type=TITLE&b_date=year" >3</a>
+                    
+                    
+                    
+                    <a href="/search/searchgj/zbcg?rp=30&categoryid=1%2C2&keywords=%E5%9F%8E%E5%B8%82%E8%BD%A8%E9%81%93&page=4&areaid=5%2C6%2C&table_type=1%2C2%2C4%2C5%2C&search_type=TITLE&b_date=year" >4</a>
+                    
+                    
+                    
+                    <a href="/search/searchgj/zbcg?rp=30&categoryid=1%2C2&keywords=%E5%9F%8E%E5%B8%82%E8%BD%A8%E9%81%93&page=2&areaid=5%2C6%2C&table_type=1%2C2%2C4%2C5%2C&search_type=TITLE&b_date=year" >后一页</a>
+                    
+                    <a href="/search/searchgj/zbcg?rp=30&categoryid=1%2C2&keywords=%E5%9F%8E%E5%B8%82%E8%BD%A8%E9%81%93&page=6&areaid=5%2C6%2C&table_type=1%2C2%2C4%2C5%2C&search_type=TITLE&b_date=year" >最后一页</a>
+                    <span style="margin-left:5px;">共 <font color="#2176bd">169</font>条记录,</span> <span style="margin-left:5px;">用时 <font color="#2176bd">0.925</font></span>ms
+                    <br/>
+                    
+                    
+                </div>
+                <!-- 数据列表 -->
+                <!--<table height="20" frame="box" cellspacing="1" cellpadding="3" border="0" align="center" width="100%" class="table_body" bordercolorlight="BLACK" bordercolordark="WHITE">-->
+                 <table cellpadding="0" style="width:1003px;height:auto;">
+                    <tbody>
+                        
+                        
+                        <tr>
+                            <td style="height:45px;border-bottom:1px dashed #ead5b7;width:50%;">
+                                <a target="_blank" href="/zbgg/CSeWA.html" title="关于中铁十五局集团城市轨道交通工程有限公司物资集中采购招标盾尾油脂、密封油脂包件投标人资格及审查要求内容的变更通知[变更]" style="background:url(/public/search/searchadvzbxx/test/images/dian_11.jpg) no-repeat left center;padding-left:10px;">关于中铁十五局集团<font color="red">城市轨道</font>交通工程有限公司物资集中采购招标盾尾油脂、密封油脂包件投标人资格及审查要求内容的变更通知[变更]</a>
+                            </td> 
+                            <td style="height:45px;line-height: 45px;border-bottom:1px dashed #ead5b7;width:10%;text-align: center" id="sc_no" class="x_sc">
+                                <img onclick="javascript:scInfo('27518040',this);" src="/public/search/searchadvzbxx/test/images/souc_11.jpg" style="vertical-align:-3px;padding-right:5px;cursor:pointer;" /><span onclick = "javascript:scInfo('27518040',this)" style="cursor:pointer;">收藏 </span>
+                            </td>
+                            <td style="height:45px;line-height: 45px;border-bottom:1px dashed #ead5b7;width:10%;text-align:center;display:none;" id="sc_yes" >
+                                <img onclick="javascript:qxSCInfo('27518040',this);" src="/public/search/searchadvzbxx/test/images/souc_hua_11.jpg" style="vertical-align:-3px;padding-right:5px;cursor:pointer;" /><span onclick = "javascript:qxSCInfo('27518040',this)" style="cursor:pointer;color:#ce5a0d;">已收藏 </span>
+                            </td>
+                            <input type="hidden" class="x_job" value="27518040" id="sc27518040"/>
+                            <td style="height:45px;line-height: 45px;border-bottom:1px dashed #ead5b7;width:10%;text-align: center">山西</td>
+                            <td style="height:45px;border-bottom:1px dashed #ead5b7;width:20%;text-align: center">交通运输,其它</td>
+                            <td style="height:45px;line-height: 45px;border-bottom:1px dashed #ead5b7;width:10%;text-align: center"> 2016-09-20 </td> 
+                        </tr>
+                        
+                        <tr>
+                            <td style="height:45px;border-bottom:1px dashed #ead5b7;width:50%;">
+                                <a target="_blank" href="/zbgs/CeEMdf.html" title="石家庄市城市轨道交通1号线一期工程及线网运营指挥中心工程室内环境检测服务项目中标公示" style="background:url(/public/search/searchadvzbxx/test/images/dian_11.jpg) no-repeat left center;padding-left:10px;">石家庄市<font color="red">城市轨道</font>交通1号线一期工程及线网运营指挥中心工程室内环境检测服务项目中标公示</a>
+                            </td> 
+                            <td style="height:45px;line-height: 45px;border-bottom:1px dashed #ead5b7;width:10%;text-align: center" id="sc_no" class="x_sc">
+                                <img onclick="javascript:scInfo('1052835422',this);" src="/public/search/searchadvzbxx/test/images/souc_11.jpg" style="vertical-align:-3px;padding-right:5px;cursor:pointer;" /><span onclick = "javascript:scInfo('1052835422',this)" style="cursor:pointer;">收藏 </span>
+                            </td>
+                            <td style="height:45px;line-height: 45px;border-bottom:1px dashed #ead5b7;width:10%;text-align:center;display:none;" id="sc_yes" >
+                                <img onclick="javascript:qxSCInfo('1052835422',this);" src="/public/search/searchadvzbxx/test/images/souc_hua_11.jpg" style="vertical-align:-3px;padding-right:5px;cursor:pointer;" /><span onclick = "javascript:qxSCInfo('1052835422',this)" style="cursor:pointer;color:#ce5a0d;">已收藏 </span>
+                            </td>
+                            <input type="hidden" class="x_job" value="1052835422" id="sc1052835422"/>
+                            <td style="height:45px;line-height: 45px;border-bottom:1px dashed #ead5b7;width:10%;text-align: center">河北省</td>
+                            <td style="height:45px;border-bottom:1px dashed #ead5b7;width:20%;text-align: center">交通运输,环保,商业服务</td>
+                            <td style="height:45px;line-height: 45px;border-bottom:1px dashed #ead5b7;width:10%;text-align: center"> 2016-09-14 </td> 
+                        </tr>
+                        
+                        <tr>
+                            <td style="height:45px;border-bottom:1px dashed #ead5b7;width:50%;">
+                                <a target="_blank" href="/zbgg/C4W3R.html" title="中铁十五局集团城市轨道交通工程有限公司物资集中采购招标公告" style="background:url(/public/search/searchadvzbxx/test/images/dian_11.jpg) no-repeat left center;padding-left:10px;">中铁十五局集团<font color="red">城市轨道</font>交通工程有限公司物资集中采购招标公告</a>
+                            </td> 
+                            <td style="height:45px;line-height: 45px;border-bottom:1px dashed #ead5b7;width:10%;text-align: center" id="sc_no" class="x_sc">
+                                <img onclick="javascript:scInfo('27315075',this);" src="/public/search/searchadvzbxx/test/images/souc_11.jpg" style="vertical-align:-3px;padding-right:5px;cursor:pointer;" /><span onclick = "javascript:scInfo('27315075',this)" style="cursor:pointer;">收藏 </span>
+                            </td>
+                            <td style="height:45px;line-height: 45px;border-bottom:1px dashed #ead5b7;width:10%;text-align:center;display:none;" id="sc_yes" >
+                                <img onclick="javascript:qxSCInfo('27315075',this);" src="/public/search/searchadvzbxx/test/images/souc_hua_11.jpg" style="vertical-align:-3px;padding-right:5px;cursor:pointer;" /><span onclick = "javascript:qxSCInfo('27315075',this)" style="cursor:pointer;color:#ce5a0d;">已收藏 </span>
+                            </td>
+                            <input type="hidden" class="x_job" value="27315075" id="sc27315075"/>
+                            <td style="height:45px;line-height: 45px;border-bottom:1px dashed #ead5b7;width:10%;text-align: center">山西</td>
+                            <td style="height:45px;border-bottom:1px dashed #ead5b7;width:20%;text-align: center">交通运输</td>
+                            <td style="height:45px;line-height: 45px;border-bottom:1px dashed #ead5b7;width:10%;text-align: center"> 2016-09-13 </td> 
+                        </tr>
+                        
+                        <tr>
+                            <td style="height:45px;border-bottom:1px dashed #ead5b7;width:50%;">
+                                <a target="_blank" href="/zbgs/CeoZGe.html" title="石家庄市城市轨道交通1号线一期工程、3号线一期工程环境监理项目中标候选人公示" style="background:url(/public/search/searchadvzbxx/test/images/dian_11.jpg) no-repeat left center;padding-left:10px;">石家庄市<font color="red">城市轨道</font>交通1号线一期工程、3号线一期工程环境监理项目中标候选人公示</a>
+                            </td> 
+                            <td style="height:45px;line-height: 45px;border-bottom:1px dashed #ead5b7;width:10%;text-align: center" id="sc_no" class="x_sc">
+                                <img onclick="javascript:scInfo('1052617674',this);" src="/public/search/searchadvzbxx/test/images/souc_11.jpg" style="vertical-align:-3px;padding-right:5px;cursor:pointer;" /><span onclick = "javascript:scInfo('1052617674',this)" style="cursor:pointer;">收藏 </span>
+                            </td>
+                            <td style="height:45px;line-height: 45px;border-bottom:1px dashed #ead5b7;width:10%;text-align:center;display:none;" id="sc_yes" >
+                                <img onclick="javascript:qxSCInfo('1052617674',this);" src="/public/search/searchadvzbxx/test/images/souc_hua_11.jpg" style="vertical-align:-3px;padding-right:5px;cursor:pointer;" /><span onclick = "javascript:qxSCInfo('1052617674',this)" style="cursor:pointer;color:#ce5a0d;">已收藏 </span>
+                            </td>
+                            <input type="hidden" class="x_job" value="1052617674" id="sc1052617674"/>
+                            <td style="height:45px;line-height: 45px;border-bottom:1px dashed #ead5b7;width:10%;text-align: center">河北</td>
+                            <td style="height:45px;border-bottom:1px dashed #ead5b7;width:20%;text-align: center">交通运输</td>
+                            <td style="height:45px;line-height: 45px;border-bottom:1px dashed #ead5b7;width:10%;text-align: center"> 2016-09-05 </td> 
+                        </tr>
+                        
+                        <tr>
+                            <td style="height:45px;border-bottom:1px dashed #ead5b7;width:50%;">
+                                <a target="_blank" href="/zbgs/CeotHj.html" title="石家庄市城市轨道交通2号线一期土建及相关工程保险中标候选人公示" style="background:url(/public/search/searchadvzbxx/test/images/dian_11.jpg) no-repeat left center;padding-left:10px;">石家庄市<font color="red">城市轨道</font>交通2号线一期土建及相关工程保险中标候选人公示</a>
+                            </td> 
+                            <td style="height:45px;line-height: 45px;border-bottom:1px dashed #ead5b7;width:10%;text-align: center" id="sc_no" class="x_sc">
+                                <img onclick="javascript:scInfo('1052504193',this);" src="/public/search/searchadvzbxx/test/images/souc_11.jpg" style="vertical-align:-3px;padding-right:5px;cursor:pointer;" /><span onclick = "javascript:scInfo('1052504193',this)" style="cursor:pointer;">收藏 </span>
+                            </td>
+                            <td style="height:45px;line-height: 45px;border-bottom:1px dashed #ead5b7;width:10%;text-align:center;display:none;" id="sc_yes" >
+                                <img onclick="javascript:qxSCInfo('1052504193',this);" src="/public/search/searchadvzbxx/test/images/souc_hua_11.jpg" style="vertical-align:-3px;padding-right:5px;cursor:pointer;" /><span onclick = "javascript:qxSCInfo('1052504193',this)" style="cursor:pointer;color:#ce5a0d;">已收藏 </span>
+                            </td>
+                            <input type="hidden" class="x_job" value="1052504193" id="sc1052504193"/>
+                            <td style="height:45px;line-height: 45px;border-bottom:1px dashed #ead5b7;width:10%;text-align: center">河北</td>
+                            <td style="height:45px;border-bottom:1px dashed #ead5b7;width:20%;text-align: center">交通运输</td>
+                            <td style="height:45px;line-height: 45px;border-bottom:1px dashed #ead5b7;width:10%;text-align: center"> 2016-08-31 </td> 
+                        </tr>
+                        
+                        <tr>
+                            <td style="height:45px;border-bottom:1px dashed #ead5b7;width:50%;">
+                                <a target="_blank" href="/zbgs/CeotJ7.html" title="石家庄市城市轨道交通线网运营指挥中心工程直饮水系统项目中标候选人公示" style="background:url(/public/search/searchadvzbxx/test/images/dian_11.jpg) no-repeat left center;padding-left:10px;">石家庄市<font color="red">城市轨道</font>交通线网运营指挥中心工程直饮水系统项目中标候选人公示</a>
+                            </td> 
+                            <td style="height:45px;line-height: 45px;border-bottom:1px dashed #ead5b7;width:10%;text-align: center" id="sc_no" class="x_sc">
+                                <img onclick="javascript:scInfo('1052504769',this);" src="/public/search/searchadvzbxx/test/images/souc_11.jpg" style="vertical-align:-3px;padding-right:5px;cursor:pointer;" /><span onclick = "javascript:scInfo('1052504769',this)" style="cursor:pointer;">收藏 </span>
+                            </td>
+                            <td style="height:45px;line-height: 45px;border-bottom:1px dashed #ead5b7;width:10%;text-align:center;display:none;" id="sc_yes" >
+                                <img onclick="javascript:qxSCInfo('1052504769',this);" src="/public/search/searchadvzbxx/test/images/souc_hua_11.jpg" style="vertical-align:-3px;padding-right:5px;cursor:pointer;" /><span onclick = "javascript:qxSCInfo('1052504769',this)" style="cursor:pointer;color:#ce5a0d;">已收藏 </span>
+                            </td>
+                            <input type="hidden" class="x_job" value="1052504769" id="sc1052504769"/>
+                            <td style="height:45px;line-height: 45px;border-bottom:1px dashed #ead5b7;width:10%;text-align: center">河北</td>
+                            <td style="height:45px;border-bottom:1px dashed #ead5b7;width:20%;text-align: center">交通运输</td>
+                            <td style="height:45px;line-height: 45px;border-bottom:1px dashed #ead5b7;width:10%;text-align: center"> 2016-08-31 </td> 
+                        </tr>
+                        
+                        <tr>
+                            <td style="height:45px;border-bottom:1px dashed #ead5b7;width:50%;">
+                                <a target="_blank" href="/zbgs/COl0Z.html" title="石家庄市城市轨道交通线网运营指挥中心工程中标公告" style="background:url(/public/search/searchadvzbxx/test/images/dian_11.jpg) no-repeat left center;padding-left:10px;">石家庄市<font color="red">城市轨道</font>交通线网运营指挥中心工程中标公告</a>
+                            </td> 
+                            <td style="height:45px;line-height: 45px;border-bottom:1px dashed #ead5b7;width:10%;text-align: center" id="sc_no" class="x_sc">
+                                <img onclick="javascript:scInfo('26868471',this);" src="/public/search/searchadvzbxx/test/images/souc_11.jpg" style="vertical-align:-3px;padding-right:5px;cursor:pointer;" /><span onclick = "javascript:scInfo('26868471',this)" style="cursor:pointer;">收藏 </span>
+                            </td>
+                            <td style="height:45px;line-height: 45px;border-bottom:1px dashed #ead5b7;width:10%;text-align:center;display:none;" id="sc_yes" >
+                                <img onclick="javascript:qxSCInfo('26868471',this);" src="/public/search/searchadvzbxx/test/images/souc_hua_11.jpg" style="vertical-align:-3px;padding-right:5px;cursor:pointer;" /><span onclick = "javascript:qxSCInfo('26868471',this)" style="cursor:pointer;color:#ce5a0d;">已收藏 </span>
+                            </td>
+                            <input type="hidden" class="x_job" value="26868471" id="sc26868471"/>
+                            <td style="height:45px;line-height: 45px;border-bottom:1px dashed #ead5b7;width:10%;text-align: center">河北</td>
+                            <td style="height:45px;border-bottom:1px dashed #ead5b7;width:20%;text-align: center">交通运输</td>
+                            <td style="height:45px;line-height: 45px;border-bottom:1px dashed #ead5b7;width:10%;text-align: center"> 2016-08-31 </td> 
+                        </tr>
+                        
+                        <tr>
+                            <td style="height:45px;border-bottom:1px dashed #ead5b7;width:50%;">
+                                <a target="_blank" href="/zbgs/COkfq.html" title="石家庄市城市轨道交通2号线一期土建及相关工程保险中标公告" style="background:url(/public/search/searchadvzbxx/test/images/dian_11.jpg) no-repeat left center;padding-left:10px;">石家庄市<font color="red">城市轨道</font>交通2号线一期土建及相关工程保险中标公告</a>
+                            </td> 
+                            <td style="height:45px;line-height: 45px;border-bottom:1px dashed #ead5b7;width:10%;text-align: center" id="sc_no" class="x_sc">
+                                <img onclick="javascript:scInfo('26863651',this);" src="/public/search/searchadvzbxx/test/images/souc_11.jpg" style="vertical-align:-3px;padding-right:5px;cursor:pointer;" /><span onclick = "javascript:scInfo('26863651',this)" style="cursor:pointer;">收藏 </span>
+                            </td>
+                            <td style="height:45px;line-height: 45px;border-bottom:1px dashed #ead5b7;width:10%;text-align:center;display:none;" id="sc_yes" >
+                                <img onclick="javascript:qxSCInfo('26863651',this);" src="/public/search/searchadvzbxx/test/images/souc_hua_11.jpg" style="vertical-align:-3px;padding-right:5px;cursor:pointer;" /><span onclick = "javascript:qxSCInfo('26863651',this)" style="cursor:pointer;color:#ce5a0d;">已收藏 </span>
+                            </td>
+                            <input type="hidden" class="x_job" value="26863651" id="sc26863651"/>
+                            <td style="height:45px;line-height: 45px;border-bottom:1px dashed #ead5b7;width:10%;text-align: center">河北</td>
+                            <td style="height:45px;border-bottom:1px dashed #ead5b7;width:20%;text-align: center">交通运输</td>
+                            <td style="height:45px;line-height: 45px;border-bottom:1px dashed #ead5b7;width:10%;text-align: center"> 2016-08-31 </td> 
+                        </tr>
+                        
+                        <tr>
+                            <td style="height:45px;border-bottom:1px dashed #ead5b7;width:50%;">
+                                <a target="_blank" href="/zbgs/CeoQvB.html" title="石家庄市城市轨道交通2号线一期土建及相关工程保险中标公示" style="background:url(/public/search/searchadvzbxx/test/images/dian_11.jpg) no-repeat left center;padding-left:10px;">石家庄市<font color="red">城市轨道</font>交通2号线一期土建及相关工程保险中标公示</a>
+                            </td> 
+                            <td style="height:45px;line-height: 45px;border-bottom:1px dashed #ead5b7;width:10%;text-align: center" id="sc_no" class="x_sc">
+                                <img onclick="javascript:scInfo('1052451698',this);" src="/public/search/searchadvzbxx/test/images/souc_11.jpg" style="vertical-align:-3px;padding-right:5px;cursor:pointer;" /><span onclick = "javascript:scInfo('1052451698',this)" style="cursor:pointer;">收藏 </span>
+                            </td>
+                            <td style="height:45px;line-height: 45px;border-bottom:1px dashed #ead5b7;width:10%;text-align:center;display:none;" id="sc_yes" >
+                                <img onclick="javascript:qxSCInfo('1052451698',this);" src="/public/search/searchadvzbxx/test/images/souc_hua_11.jpg" style="vertical-align:-3px;padding-right:5px;cursor:pointer;" /><span onclick = "javascript:qxSCInfo('1052451698',this)" style="cursor:pointer;color:#ce5a0d;">已收藏 </span>
+                            </td>
+                            <input type="hidden" class="x_job" value="1052451698" id="sc1052451698"/>
+                            <td style="height:45px;line-height: 45px;border-bottom:1px dashed #ead5b7;width:10%;text-align: center">河北省</td>
+                            <td style="height:45px;border-bottom:1px dashed #ead5b7;width:20%;text-align: center">交通运输,商业服务</td>
+                            <td style="height:45px;line-height: 45px;border-bottom:1px dashed #ead5b7;width:10%;text-align: center"> 2016-08-31 </td> 
+                        </tr>
+                        
+                        <tr>
+                            <td style="height:45px;border-bottom:1px dashed #ead5b7;width:50%;">
+                                <a target="_blank" href="/zbgs/CeG9Og.html" title="石家庄市城市轨道交通1号线110KV输变电新建工程电力通道综合在线监测系统设备安装项目中标候选人公示" style="background:url(/public/search/searchadvzbxx/test/images/dian_11.jpg) no-repeat left center;padding-left:10px;">石家庄市<font color="red">城市轨道</font>交通1号线110KV输变电新建工程电力通道综合在线监测系统设备安装项目中标候选人公示</a>
+                            </td> 
+                            <td style="height:45px;line-height: 45px;border-bottom:1px dashed #ead5b7;width:10%;text-align: center" id="sc_no" class="x_sc">
+                                <img onclick="javascript:scInfo('1052438750',this);" src="/public/search/searchadvzbxx/test/images/souc_11.jpg" style="vertical-align:-3px;padding-right:5px;cursor:pointer;" /><span onclick = "javascript:scInfo('1052438750',this)" style="cursor:pointer;">收藏 </span>
+                            </td>
+                            <td style="height:45px;line-height: 45px;border-bottom:1px dashed #ead5b7;width:10%;text-align:center;display:none;" id="sc_yes" >
+                                <img onclick="javascript:qxSCInfo('1052438750',this);" src="/public/search/searchadvzbxx/test/images/souc_hua_11.jpg" style="vertical-align:-3px;padding-right:5px;cursor:pointer;" /><span onclick = "javascript:qxSCInfo('1052438750',this)" style="cursor:pointer;color:#ce5a0d;">已收藏 </span>
+                            </td>
+                            <input type="hidden" class="x_job" value="1052438750" id="sc1052438750"/>
+                            <td style="height:45px;line-height: 45px;border-bottom:1px dashed #ead5b7;width:10%;text-align: center">河北</td>
+                            <td style="height:45px;border-bottom:1px dashed #ead5b7;width:20%;text-align: center">交通运输</td>
+                            <td style="height:45px;line-height: 45px;border-bottom:1px dashed #ead5b7;width:10%;text-align: center"> 2016-08-29 </td> 
+                        </tr>
+                        
+                        <tr>
+                            <td style="height:45px;border-bottom:1px dashed #ead5b7;width:50%;">
+                                <a target="_blank" href="/zbgs/CeGFip.html" title="石家庄市城市轨道交通线网运营控制指挥中心机械停车采购安装项目公开招标中标公告" style="background:url(/public/search/searchadvzbxx/test/images/dian_11.jpg) no-repeat left center;padding-left:10px;">石家庄市<font color="red">城市轨道</font>交通线网运营控制指挥中心机械停车采购安装项目公开招标中标公告</a>
+                            </td> 
+                            <td style="height:45px;line-height: 45px;border-bottom:1px dashed #ead5b7;width:10%;text-align: center" id="sc_no" class="x_sc">
+                                <img onclick="javascript:scInfo('1052393387',this);" src="/public/search/searchadvzbxx/test/images/souc_11.jpg" style="vertical-align:-3px;padding-right:5px;cursor:pointer;" /><span onclick = "javascript:scInfo('1052393387',this)" style="cursor:pointer;">收藏 </span>
+                            </td>
+                            <td style="height:45px;line-height: 45px;border-bottom:1px dashed #ead5b7;width:10%;text-align:center;display:none;" id="sc_yes" >
+                                <img onclick="javascript:qxSCInfo('1052393387',this);" src="/public/search/searchadvzbxx/test/images/souc_hua_11.jpg" style="vertical-align:-3px;padding-right:5px;cursor:pointer;" /><span onclick = "javascript:qxSCInfo('1052393387',this)" style="cursor:pointer;color:#ce5a0d;">已收藏 </span>
+                            </td>
+                            <input type="hidden" class="x_job" value="1052393387" id="sc1052393387"/>
+                            <td style="height:45px;line-height: 45px;border-bottom:1px dashed #ead5b7;width:10%;text-align: center">河北</td>
+                            <td style="height:45px;border-bottom:1px dashed #ead5b7;width:20%;text-align: center">交通运输</td>
+                            <td style="height:45px;line-height: 45px;border-bottom:1px dashed #ead5b7;width:10%;text-align: center"> 2016-08-26 </td> 
+                        </tr>
+                        
+                        <tr>
+                            <td style="height:45px;border-bottom:1px dashed #ead5b7;width:50%;">
+                                <a target="_blank" href="/zbgs/C6fGH.html" title="石家庄市城市轨道交通1、3号线一期工程车站艺术墙设计、制作及安装项目（1号线标段）中标公示" style="background:url(/public/search/searchadvzbxx/test/images/dian_11.jpg) no-repeat left center;padding-left:10px;">石家庄市<font color="red">城市轨道</font>交通1、3号线一期工程车站艺术墙设计、制作及安装项目（1号线标段）中标公示</a>
+                            </td> 
+                            <td style="height:45px;line-height: 45px;border-bottom:1px dashed #ead5b7;width:10%;text-align: center" id="sc_no" class="x_sc">
+                                <img onclick="javascript:scInfo('26599431',this);" src="/public/search/searchadvzbxx/test/images/souc_11.jpg" style="vertical-align:-3px;padding-right:5px;cursor:pointer;" /><span onclick = "javascript:scInfo('26599431',this)" style="cursor:pointer;">收藏 </span>
+                            </td>
+                            <td style="height:45px;line-height: 45px;border-bottom:1px dashed #ead5b7;width:10%;text-align:center;display:none;" id="sc_yes" >
+                                <img onclick="javascript:qxSCInfo('26599431',this);" src="/public/search/searchadvzbxx/test/images/souc_hua_11.jpg" style="vertical-align:-3px;padding-right:5px;cursor:pointer;" /><span onclick = "javascript:qxSCInfo('26599431',this)" style="cursor:pointer;color:#ce5a0d;">已收藏 </span>
+                            </td>
+                            <input type="hidden" class="x_job" value="26599431" id="sc26599431"/>
+                            <td style="height:45px;line-height: 45px;border-bottom:1px dashed #ead5b7;width:10%;text-align: center">河北</td>
+                            <td style="height:45px;border-bottom:1px dashed #ead5b7;width:20%;text-align: center">交通运输,市政房地产建筑</td>
+                            <td style="height:45px;line-height: 45px;border-bottom:1px dashed #ead5b7;width:10%;text-align: center"> 2016-08-24 </td> 
+                        </tr>
+                        
+                        <tr>
+                            <td style="height:45px;border-bottom:1px dashed #ead5b7;width:50%;">
+                                <a target="_blank" href="/zbgs/CeGNKf.html" title="石家庄市城市轨道交通1、3号线一期工程车站艺术墙设计、制作及安装项目（3号线标段）中标公示" style="background:url(/public/search/searchadvzbxx/test/images/dian_11.jpg) no-repeat left center;padding-left:10px;">石家庄市<font color="red">城市轨道</font>交通1、3号线一期工程车站艺术墙设计、制作及安装项目（3号线标段）中标公示</a>
+                            </td> 
+                            <td style="height:45px;line-height: 45px;border-bottom:1px dashed #ead5b7;width:10%;text-align: center" id="sc_no" class="x_sc">
+                                <img onclick="javascript:scInfo('1052319263',this);" src="/public/search/searchadvzbxx/test/images/souc_11.jpg" style="vertical-align:-3px;padding-right:5px;cursor:pointer;" /><span onclick = "javascript:scInfo('1052319263',this)" style="cursor:pointer;">收藏 </span>
+                            </td>
+                            <td style="height:45px;line-height: 45px;border-bottom:1px dashed #ead5b7;width:10%;text-align:center;display:none;" id="sc_yes" >
+                                <img onclick="javascript:qxSCInfo('1052319263',this);" src="/public/search/searchadvzbxx/test/images/souc_hua_11.jpg" style="vertical-align:-3px;padding-right:5px;cursor:pointer;" /><span onclick = "javascript:qxSCInfo('1052319263',this)" style="cursor:pointer;color:#ce5a0d;">已收藏 </span>
+                            </td>
+                            <input type="hidden" class="x_job" value="1052319263" id="sc1052319263"/>
+                            <td style="height:45px;line-height: 45px;border-bottom:1px dashed #ead5b7;width:10%;text-align: center">河北</td>
+                            <td style="height:45px;border-bottom:1px dashed #ead5b7;width:20%;text-align: center">交通运输</td>
+                            <td style="height:45px;line-height: 45px;border-bottom:1px dashed #ead5b7;width:10%;text-align: center"> 2016-08-24 </td> 
+                        </tr>
+                        
+                        <tr>
+                            <td style="height:45px;border-bottom:1px dashed #ead5b7;width:50%;">
+                                <a target="_blank" href="/zbgs/CeGNK2.html" title="石家庄市城市轨道交通1、3号线一期工程车站艺术墙设计、制作及安装项目（1号线标段）中标候选人公示" style="background:url(/public/search/searchadvzbxx/test/images/dian_11.jpg) no-repeat left center;padding-left:10px;">石家庄市<font color="red">城市轨道</font>交通1、3号线一期工程车站艺术墙设计、制作及安装项目（1号线标段）中标候选人公示</a>
+                            </td> 
+                            <td style="height:45px;line-height: 45px;border-bottom:1px dashed #ead5b7;width:10%;text-align: center" id="sc_no" class="x_sc">
+                                <img onclick="javascript:scInfo('1052319262',this);" src="/public/search/searchadvzbxx/test/images/souc_11.jpg" style="vertical-align:-3px;padding-right:5px;cursor:pointer;" /><span onclick = "javascript:scInfo('1052319262',this)" style="cursor:pointer;">收藏 </span>
+                            </td>
+                            <td style="height:45px;line-height: 45px;border-bottom:1px dashed #ead5b7;width:10%;text-align:center;display:none;" id="sc_yes" >
+                                <img onclick="javascript:qxSCInfo('1052319262',this);" src="/public/search/searchadvzbxx/test/images/souc_hua_11.jpg" style="vertical-align:-3px;padding-right:5px;cursor:pointer;" /><span onclick = "javascript:qxSCInfo('1052319262',this)" style="cursor:pointer;color:#ce5a0d;">已收藏 </span>
+                            </td>
+                            <input type="hidden" class="x_job" value="1052319262" id="sc1052319262"/>
+                            <td style="height:45px;line-height: 45px;border-bottom:1px dashed #ead5b7;width:10%;text-align: center">河北</td>
+                            <td style="height:45px;border-bottom:1px dashed #ead5b7;width:20%;text-align: center">交通运输</td>
+                            <td style="height:45px;line-height: 45px;border-bottom:1px dashed #ead5b7;width:10%;text-align: center"> 2016-08-24 </td> 
+                        </tr>
+                        
+                        <tr>
+                            <td style="height:45px;border-bottom:1px dashed #ead5b7;width:50%;">
+                                <a target="_blank" href="/zbgg/CeGzXx.html" title="石家庄市城市轨道交通运营分公司西兆通车辆段污水清运项目招标公告(二次)" style="background:url(/public/search/searchadvzbxx/test/images/dian_11.jpg) no-repeat left center;padding-left:10px;">石家庄市<font color="red">城市轨道</font>交通运营分公司西兆通车辆段污水清运项目招标公告(二次)</a>
+                            </td> 
+                            <td style="height:45px;line-height: 45px;border-bottom:1px dashed #ead5b7;width:10%;text-align: center" id="sc_no" class="x_sc">
+                                <img onclick="javascript:scInfo('1052316463',this);" src="/public/search/searchadvzbxx/test/images/souc_11.jpg" style="vertical-align:-3px;padding-right:5px;cursor:pointer;" /><span onclick = "javascript:scInfo('1052316463',this)" style="cursor:pointer;">收藏 </span>
+                            </td>
+                            <td style="height:45px;line-height: 45px;border-bottom:1px dashed #ead5b7;width:10%;text-align:center;display:none;" id="sc_yes" >
+                                <img onclick="javascript:qxSCInfo('1052316463',this);" src="/public/search/searchadvzbxx/test/images/souc_hua_11.jpg" style="vertical-align:-3px;padding-right:5px;cursor:pointer;" /><span onclick = "javascript:qxSCInfo('1052316463',this)" style="cursor:pointer;color:#ce5a0d;">已收藏 </span>
+                            </td>
+                            <input type="hidden" class="x_job" value="1052316463" id="sc1052316463"/>
+                            <td style="height:45px;line-height: 45px;border-bottom:1px dashed #ead5b7;width:10%;text-align: center">河北</td>
+                            <td style="height:45px;border-bottom:1px dashed #ead5b7;width:20%;text-align: center">交通运输</td>
+                            <td style="height:45px;line-height: 45px;border-bottom:1px dashed #ead5b7;width:10%;text-align: center"> 2016-08-24 </td> 
+                        </tr>
+                        
+                        <tr>
+                            <td style="height:45px;border-bottom:1px dashed #ead5b7;width:50%;">
+                                <a target="_blank" href="/zbgg/CeF4UY.html" title="石家庄市城市轨道交通1号线一期工程及线网运营指挥中心工程室内环境检测服务项目招标公告" style="background:url(/public/search/searchadvzbxx/test/images/dian_11.jpg) no-repeat left center;padding-left:10px;">石家庄市<font color="red">城市轨道</font>交通1号线一期工程及线网运营指挥中心工程室内环境检测服务项目招标公告</a>
+                            </td> 
+                            <td style="height:45px;line-height: 45px;border-bottom:1px dashed #ead5b7;width:10%;text-align: center" id="sc_no" class="x_sc">
+                                <img onclick="javascript:scInfo('1052130592',this);" src="/public/search/searchadvzbxx/test/images/souc_11.jpg" style="vertical-align:-3px;padding-right:5px;cursor:pointer;" /><span onclick = "javascript:scInfo('1052130592',this)" style="cursor:pointer;">收藏 </span>
+                            </td>
+                            <td style="height:45px;line-height: 45px;border-bottom:1px dashed #ead5b7;width:10%;text-align:center;display:none;" id="sc_yes" >
+                                <img onclick="javascript:qxSCInfo('1052130592',this);" src="/public/search/searchadvzbxx/test/images/souc_hua_11.jpg" style="vertical-align:-3px;padding-right:5px;cursor:pointer;" /><span onclick = "javascript:qxSCInfo('1052130592',this)" style="cursor:pointer;color:#ce5a0d;">已收藏 </span>
+                            </td>
+                            <input type="hidden" class="x_job" value="1052130592" id="sc1052130592"/>
+                            <td style="height:45px;line-height: 45px;border-bottom:1px dashed #ead5b7;width:10%;text-align: center">河北省</td>
+                            <td style="height:45px;border-bottom:1px dashed #ead5b7;width:20%;text-align: center">交通运输,市政房地产建筑,商业服务</td>
+                            <td style="height:45px;line-height: 45px;border-bottom:1px dashed #ead5b7;width:10%;text-align: center"> 2016-08-18 </td> 
+                        </tr>
+                        
+                        <tr>
+                            <td style="height:45px;border-bottom:1px dashed #ead5b7;width:50%;">
+                                <a target="_blank" href="/zbgg/CeFbMh.html" title="石家庄市城市轨道交通1号线一期工程西兆通车辆段运营综合仿真培训系统采购招标公告" style="background:url(/public/search/searchadvzbxx/test/images/dian_11.jpg) no-repeat left center;padding-left:10px;">石家庄市<font color="red">城市轨道</font>交通1号线一期工程西兆通车辆段运营综合仿真培训系统采购招标公告</a>
+                            </td> 
+                            <td style="height:45px;line-height: 45px;border-bottom:1px dashed #ead5b7;width:10%;text-align: center" id="sc_no" class="x_sc">
+                                <img onclick="javascript:scInfo('1052080873',this);" src="/public/search/searchadvzbxx/test/images/souc_11.jpg" style="vertical-align:-3px;padding-right:5px;cursor:pointer;" /><span onclick = "javascript:scInfo('1052080873',this)" style="cursor:pointer;">收藏 </span>
+                            </td>
+                            <td style="height:45px;line-height: 45px;border-bottom:1px dashed #ead5b7;width:10%;text-align:center;display:none;" id="sc_yes" >
+                                <img onclick="javascript:qxSCInfo('1052080873',this);" src="/public/search/searchadvzbxx/test/images/souc_hua_11.jpg" style="vertical-align:-3px;padding-right:5px;cursor:pointer;" /><span onclick = "javascript:qxSCInfo('1052080873',this)" style="cursor:pointer;color:#ce5a0d;">已收藏 </span>
+                            </td>
+                            <input type="hidden" class="x_job" value="1052080873" id="sc1052080873"/>
+                            <td style="height:45px;line-height: 45px;border-bottom:1px dashed #ead5b7;width:10%;text-align: center">河北</td>
+                            <td style="height:45px;border-bottom:1px dashed #ead5b7;width:20%;text-align: center">交通运输</td>
+                            <td style="height:45px;line-height: 45px;border-bottom:1px dashed #ead5b7;width:10%;text-align: center"> 2016-08-15 </td> 
+                        </tr>
+                        
+                        <tr>
+                            <td style="height:45px;border-bottom:1px dashed #ead5b7;width:50%;">
+                                <a target="_blank" href="/zbgs/CejI2G.html" title="石家庄市城市轨道交通1号线一期工程西兆通车辆段与综合基地培训中心会议教学音频系统采购项目中标公示" style="background:url(/public/search/searchadvzbxx/test/images/dian_11.jpg) no-repeat left center;padding-left:10px;">石家庄市<font color="red">城市轨道</font>交通1号线一期工程西兆通车辆段与综合基地培训中心会议教学音频系统采购项目中标公示</a>
+                            </td> 
+                            <td style="height:45px;line-height: 45px;border-bottom:1px dashed #ead5b7;width:10%;text-align: center" id="sc_no" class="x_sc">
+                                <img onclick="javascript:scInfo('1051909475',this);" src="/public/search/searchadvzbxx/test/images/souc_11.jpg" style="vertical-align:-3px;padding-right:5px;cursor:pointer;" /><span onclick = "javascript:scInfo('1051909475',this)" style="cursor:pointer;">收藏 </span>
+                            </td>
+                            <td style="height:45px;line-height: 45px;border-bottom:1px dashed #ead5b7;width:10%;text-align:center;display:none;" id="sc_yes" >
+                                <img onclick="javascript:qxSCInfo('1051909475',this);" src="/public/search/searchadvzbxx/test/images/souc_hua_11.jpg" style="vertical-align:-3px;padding-right:5px;cursor:pointer;" /><span onclick = "javascript:qxSCInfo('1051909475',this)" style="cursor:pointer;color:#ce5a0d;">已收藏 </span>
+                            </td>
+                            <input type="hidden" class="x_job" value="1051909475" id="sc1051909475"/>
+                            <td style="height:45px;line-height: 45px;border-bottom:1px dashed #ead5b7;width:10%;text-align: center">河北</td>
+                            <td style="height:45px;border-bottom:1px dashed #ead5b7;width:20%;text-align: center">交通运输</td>
+                            <td style="height:45px;line-height: 45px;border-bottom:1px dashed #ead5b7;width:10%;text-align: center"> 2016-08-09 </td> 
+                        </tr>
+                        
+                        <tr>
+                            <td style="height:45px;border-bottom:1px dashed #ead5b7;width:50%;">
+                                <a target="_blank" href="/zbgs/Cdn3C.html" title="石家庄市城市轨道交通1号线一期工程西兆通车辆段与综合基地培训中心会议教学音频系统采购中标公示" style="background:url(/public/search/searchadvzbxx/test/images/dian_11.jpg) no-repeat left center;padding-left:10px;">石家庄市<font color="red">城市轨道</font>交通1号线一期工程西兆通车辆段与综合基地培训中心会议教学音频系统采购中标公示</a>
+                            </td> 
+                            <td style="height:45px;line-height: 45px;border-bottom:1px dashed #ead5b7;width:10%;text-align: center" id="sc_no" class="x_sc">
+                                <img onclick="javascript:scInfo('26013205',this);" src="/public/search/searchadvzbxx/test/images/souc_11.jpg" style="vertical-align:-3px;padding-right:5px;cursor:pointer;" /><span onclick = "javascript:scInfo('26013205',this)" style="cursor:pointer;">收藏 </span>
+                            </td>
+                            <td style="height:45px;line-height: 45px;border-bottom:1px dashed #ead5b7;width:10%;text-align:center;display:none;" id="sc_yes" >
+                                <img onclick="javascript:qxSCInfo('26013205',this);" src="/public/search/searchadvzbxx/test/images/souc_hua_11.jpg" style="vertical-align:-3px;padding-right:5px;cursor:pointer;" /><span onclick = "javascript:qxSCInfo('26013205',this)" style="cursor:pointer;color:#ce5a0d;">已收藏 </span>
+                            </td>
+                            <input type="hidden" class="x_job" value="26013205" id="sc26013205"/>
+                            <td style="height:45px;line-height: 45px;border-bottom:1px dashed #ead5b7;width:10%;text-align: center">河北</td>
+                            <td style="height:45px;border-bottom:1px dashed #ead5b7;width:20%;text-align: center">交通运输,机械电子电器,市政房地产建筑</td>
+                            <td style="height:45px;line-height: 45px;border-bottom:1px dashed #ead5b7;width:10%;text-align: center"> 2016-08-08 </td> 
+                        </tr>
+                        
+                        <tr>
+                            <td style="height:45px;border-bottom:1px dashed #ead5b7;width:50%;">
+                                <a target="_blank" href="/zbgs/Cej6o5.html" title="石家庄市城市轨道交通2号线一期工程监理2202标段中标候选人公示" style="background:url(/public/search/searchadvzbxx/test/images/dian_11.jpg) no-repeat left center;padding-left:10px;">石家庄市<font color="red">城市轨道</font>交通2号线一期工程监理2202标段中标候选人公示</a>
+                            </td> 
+                            <td style="height:45px;line-height: 45px;border-bottom:1px dashed #ead5b7;width:10%;text-align: center" id="sc_no" class="x_sc">
+                                <img onclick="javascript:scInfo('1051871567',this);" src="/public/search/searchadvzbxx/test/images/souc_11.jpg" style="vertical-align:-3px;padding-right:5px;cursor:pointer;" /><span onclick = "javascript:scInfo('1051871567',this)" style="cursor:pointer;">收藏 </span>
+                            </td>
+                            <td style="height:45px;line-height: 45px;border-bottom:1px dashed #ead5b7;width:10%;text-align:center;display:none;" id="sc_yes" >
+                                <img onclick="javascript:qxSCInfo('1051871567',this);" src="/public/search/searchadvzbxx/test/images/souc_hua_11.jpg" style="vertical-align:-3px;padding-right:5px;cursor:pointer;" /><span onclick = "javascript:qxSCInfo('1051871567',this)" style="cursor:pointer;color:#ce5a0d;">已收藏 </span>
+                            </td>
+                            <input type="hidden" class="x_job" value="1051871567" id="sc1051871567"/>
+                            <td style="height:45px;line-height: 45px;border-bottom:1px dashed #ead5b7;width:10%;text-align: center">河北</td>
+                            <td style="height:45px;border-bottom:1px dashed #ead5b7;width:20%;text-align: center">交通运输</td>
+                            <td style="height:45px;line-height: 45px;border-bottom:1px dashed #ead5b7;width:10%;text-align: center"> 2016-08-08 </td> 
+                        </tr>
+                        
+                        <tr>
+                            <td style="height:45px;border-bottom:1px dashed #ead5b7;width:50%;">
+                                <a target="_blank" href="/zbgs/Cej6G0.html" title="石家庄市城市轨道交通2号线一期工程监理2203标段中标候选人公示" style="background:url(/public/search/searchadvzbxx/test/images/dian_11.jpg) no-repeat left center;padding-left:10px;">石家庄市<font color="red">城市轨道</font>交通2号线一期工程监理2203标段中标候选人公示</a>
+                            </td> 
+                            <td style="height:45px;line-height: 45px;border-bottom:1px dashed #ead5b7;width:10%;text-align: center" id="sc_no" class="x_sc">
+                                <img onclick="javascript:scInfo('1051871535',this);" src="/public/search/searchadvzbxx/test/images/souc_11.jpg" style="vertical-align:-3px;padding-right:5px;cursor:pointer;" /><span onclick = "javascript:scInfo('1051871535',this)" style="cursor:pointer;">收藏 </span>
+                            </td>
+                            <td style="height:45px;line-height: 45px;border-bottom:1px dashed #ead5b7;width:10%;text-align:center;display:none;" id="sc_yes" >
+                                <img onclick="javascript:qxSCInfo('1051871535',this);" src="/public/search/searchadvzbxx/test/images/souc_hua_11.jpg" style="vertical-align:-3px;padding-right:5px;cursor:pointer;" /><span onclick = "javascript:qxSCInfo('1051871535',this)" style="cursor:pointer;color:#ce5a0d;">已收藏 </span>
+                            </td>
+                            <input type="hidden" class="x_job" value="1051871535" id="sc1051871535"/>
+                            <td style="height:45px;line-height: 45px;border-bottom:1px dashed #ead5b7;width:10%;text-align: center">河北</td>
+                            <td style="height:45px;border-bottom:1px dashed #ead5b7;width:20%;text-align: center">交通运输</td>
+                            <td style="height:45px;line-height: 45px;border-bottom:1px dashed #ead5b7;width:10%;text-align: center"> 2016-08-08 </td> 
+                        </tr>
+                        
+                        <tr>
+                            <td style="height:45px;border-bottom:1px dashed #ead5b7;width:50%;">
+                                <a target="_blank" href="/zbgs/Cej6Gk.html" title="石家庄市城市轨道交通2号线一期工程监理2201标段中标候选人公示" style="background:url(/public/search/searchadvzbxx/test/images/dian_11.jpg) no-repeat left center;padding-left:10px;">石家庄市<font color="red">城市轨道</font>交通2号线一期工程监理2201标段中标候选人公示</a>
+                            </td> 
+                            <td style="height:45px;line-height: 45px;border-bottom:1px dashed #ead5b7;width:10%;text-align: center" id="sc_no" class="x_sc">
+                                <img onclick="javascript:scInfo('1051871526',this);" src="/public/search/searchadvzbxx/test/images/souc_11.jpg" style="vertical-align:-3px;padding-right:5px;cursor:pointer;" /><span onclick = "javascript:scInfo('1051871526',this)" style="cursor:pointer;">收藏 </span>
+                            </td>
+                            <td style="height:45px;line-height: 45px;border-bottom:1px dashed #ead5b7;width:10%;text-align:center;display:none;" id="sc_yes" >
+                                <img onclick="javascript:qxSCInfo('1051871526',this);" src="/public/search/searchadvzbxx/test/images/souc_hua_11.jpg" style="vertical-align:-3px;padding-right:5px;cursor:pointer;" /><span onclick = "javascript:qxSCInfo('1051871526',this)" style="cursor:pointer;color:#ce5a0d;">已收藏 </span>
+                            </td>
+                            <input type="hidden" class="x_job" value="1051871526" id="sc1051871526"/>
+                            <td style="height:45px;line-height: 45px;border-bottom:1px dashed #ead5b7;width:10%;text-align: center">河北</td>
+                            <td style="height:45px;border-bottom:1px dashed #ead5b7;width:20%;text-align: center">交通运输</td>
+                            <td style="height:45px;line-height: 45px;border-bottom:1px dashed #ead5b7;width:10%;text-align: center"> 2016-08-08 </td> 
+                        </tr>
+                        
+                        <tr>
+                            <td style="height:45px;border-bottom:1px dashed #ead5b7;width:50%;">
+                                <a target="_blank" href="/zbgg/CejZ8k.html" title="石家庄市城市轨道交通线网运营指挥中心工程项目招标公告" style="background:url(/public/search/searchadvzbxx/test/images/dian_11.jpg) no-repeat left center;padding-left:10px;">石家庄市<font color="red">城市轨道</font>交通线网运营指挥中心工程项目招标公告</a>
+                            </td> 
+                            <td style="height:45px;line-height: 45px;border-bottom:1px dashed #ead5b7;width:10%;text-align: center" id="sc_no" class="x_sc">
+                                <img onclick="javascript:scInfo('1051867872',this);" src="/public/search/searchadvzbxx/test/images/souc_11.jpg" style="vertical-align:-3px;padding-right:5px;cursor:pointer;" /><span onclick = "javascript:scInfo('1051867872',this)" style="cursor:pointer;">收藏 </span>
+                            </td>
+                            <td style="height:45px;line-height: 45px;border-bottom:1px dashed #ead5b7;width:10%;text-align:center;display:none;" id="sc_yes" >
+                                <img onclick="javascript:qxSCInfo('1051867872',this);" src="/public/search/searchadvzbxx/test/images/souc_hua_11.jpg" style="vertical-align:-3px;padding-right:5px;cursor:pointer;" /><span onclick = "javascript:qxSCInfo('1051867872',this)" style="cursor:pointer;color:#ce5a0d;">已收藏 </span>
+                            </td>
+                            <input type="hidden" class="x_job" value="1051867872" id="sc1051867872"/>
+                            <td style="height:45px;line-height: 45px;border-bottom:1px dashed #ead5b7;width:10%;text-align: center">河北</td>
+                            <td style="height:45px;border-bottom:1px dashed #ead5b7;width:20%;text-align: center">交通运输</td>
+                            <td style="height:45px;line-height: 45px;border-bottom:1px dashed #ead5b7;width:10%;text-align: center"> 2016-08-08 </td> 
+                        </tr>
+                        
+                        <tr>
+                            <td style="height:45px;border-bottom:1px dashed #ead5b7;width:50%;">
+                                <a target="_blank" href="/zbgs/CejYnB.html" title="石家庄市城市轨道交通2号线一期工程监理2201标段中标公示" style="background:url(/public/search/searchadvzbxx/test/images/dian_11.jpg) no-repeat left center;padding-left:10px;">石家庄市<font color="red">城市轨道</font>交通2号线一期工程监理2201标段中标公示</a>
+                            </td> 
+                            <td style="height:45px;line-height: 45px;border-bottom:1px dashed #ead5b7;width:10%;text-align: center" id="sc_no" class="x_sc">
+                                <img onclick="javascript:scInfo('1051844693',this);" src="/public/search/searchadvzbxx/test/images/souc_11.jpg" style="vertical-align:-3px;padding-right:5px;cursor:pointer;" /><span onclick = "javascript:scInfo('1051844693',this)" style="cursor:pointer;">收藏 </span>
+                            </td>
+                            <td style="height:45px;line-height: 45px;border-bottom:1px dashed #ead5b7;width:10%;text-align:center;display:none;" id="sc_yes" >
+                                <img onclick="javascript:qxSCInfo('1051844693',this);" src="/public/search/searchadvzbxx/test/images/souc_hua_11.jpg" style="vertical-align:-3px;padding-right:5px;cursor:pointer;" /><span onclick = "javascript:qxSCInfo('1051844693',this)" style="cursor:pointer;color:#ce5a0d;">已收藏 </span>
+                            </td>
+                            <input type="hidden" class="x_job" value="1051844693" id="sc1051844693"/>
+                            <td style="height:45px;line-height: 45px;border-bottom:1px dashed #ead5b7;width:10%;text-align: center">河北省</td>
+                            <td style="height:45px;border-bottom:1px dashed #ead5b7;width:20%;text-align: center">交通运输,市政房地产建筑</td>
+                            <td style="height:45px;line-height: 45px;border-bottom:1px dashed #ead5b7;width:10%;text-align: center"> 2016-08-08 </td> 
+                        </tr>
+                        
+                        <tr>
+                            <td style="height:45px;border-bottom:1px dashed #ead5b7;width:50%;">
+                                <a target="_blank" href="/zbgs/CejYn9.html" title="石家庄市城市轨道交通2号线一期工程监理2203标段中标公示" style="background:url(/public/search/searchadvzbxx/test/images/dian_11.jpg) no-repeat left center;padding-left:10px;">石家庄市<font color="red">城市轨道</font>交通2号线一期工程监理2203标段中标公示</a>
+                            </td> 
+                            <td style="height:45px;line-height: 45px;border-bottom:1px dashed #ead5b7;width:10%;text-align: center" id="sc_no" class="x_sc">
+                                <img onclick="javascript:scInfo('1051844721',this);" src="/public/search/searchadvzbxx/test/images/souc_11.jpg" style="vertical-align:-3px;padding-right:5px;cursor:pointer;" /><span onclick = "javascript:scInfo('1051844721',this)" style="cursor:pointer;">收藏 </span>
+                            </td>
+                            <td style="height:45px;line-height: 45px;border-bottom:1px dashed #ead5b7;width:10%;text-align:center;display:none;" id="sc_yes" >
+                                <img onclick="javascript:qxSCInfo('1051844721',this);" src="/public/search/searchadvzbxx/test/images/souc_hua_11.jpg" style="vertical-align:-3px;padding-right:5px;cursor:pointer;" /><span onclick = "javascript:qxSCInfo('1051844721',this)" style="cursor:pointer;color:#ce5a0d;">已收藏 </span>
+                            </td>
+                            <input type="hidden" class="x_job" value="1051844721" id="sc1051844721"/>
+                            <td style="height:45px;line-height: 45px;border-bottom:1px dashed #ead5b7;width:10%;text-align: center">河北省</td>
+                            <td style="height:45px;border-bottom:1px dashed #ead5b7;width:20%;text-align: center">交通运输,市政房地产建筑</td>
+                            <td style="height:45px;line-height: 45px;border-bottom:1px dashed #ead5b7;width:10%;text-align: center"> 2016-08-08 </td> 
+                        </tr>
+                        
+                        <tr>
+                            <td style="height:45px;border-bottom:1px dashed #ead5b7;width:50%;">
+                                <a target="_blank" href="/zbgs/CejYnx.html" title="石家庄市城市轨道交通2号线一期工程监理2202标段中标公示" style="background:url(/public/search/searchadvzbxx/test/images/dian_11.jpg) no-repeat left center;padding-left:10px;">石家庄市<font color="red">城市轨道</font>交通2号线一期工程监理2202标段中标公示</a>
+                            </td> 
+                            <td style="height:45px;line-height: 45px;border-bottom:1px dashed #ead5b7;width:10%;text-align: center" id="sc_no" class="x_sc">
+                                <img onclick="javascript:scInfo('1051844719',this);" src="/public/search/searchadvzbxx/test/images/souc_11.jpg" style="vertical-align:-3px;padding-right:5px;cursor:pointer;" /><span onclick = "javascript:scInfo('1051844719',this)" style="cursor:pointer;">收藏 </span>
+                            </td>
+                            <td style="height:45px;line-height: 45px;border-bottom:1px dashed #ead5b7;width:10%;text-align:center;display:none;" id="sc_yes" >
+                                <img onclick="javascript:qxSCInfo('1051844719',this);" src="/public/search/searchadvzbxx/test/images/souc_hua_11.jpg" style="vertical-align:-3px;padding-right:5px;cursor:pointer;" /><span onclick = "javascript:qxSCInfo('1051844719',this)" style="cursor:pointer;color:#ce5a0d;">已收藏 </span>
+                            </td>
+                            <input type="hidden" class="x_job" value="1051844719" id="sc1051844719"/>
+                            <td style="height:45px;line-height: 45px;border-bottom:1px dashed #ead5b7;width:10%;text-align: center">河北省</td>
+                            <td style="height:45px;border-bottom:1px dashed #ead5b7;width:20%;text-align: center">交通运输</td>
+                            <td style="height:45px;line-height: 45px;border-bottom:1px dashed #ead5b7;width:10%;text-align: center"> 2016-08-08 </td> 
+                        </tr>
+                        
+                        <tr>
+                            <td style="height:45px;border-bottom:1px dashed #ead5b7;width:50%;">
+                                <a target="_blank" href="/zbgs/CejmiG.html" title="石家庄市城市轨道交通1号线一期和3号线一期首开段管理岗、维修岗、管理维修岗工装制服采购中标候选人公示" style="background:url(/public/search/searchadvzbxx/test/images/dian_11.jpg) no-repeat left center;padding-left:10px;">石家庄市<font color="red">城市轨道</font>交通1号线一期和3号线一期首开段管理岗、维修岗、管理维修岗工装制服采购中标候选人公示</a>
+                            </td> 
+                            <td style="height:45px;line-height: 45px;border-bottom:1px dashed #ead5b7;width:10%;text-align: center" id="sc_no" class="x_sc">
+                                <img onclick="javascript:scInfo('1051837718',this);" src="/public/search/searchadvzbxx/test/images/souc_11.jpg" style="vertical-align:-3px;padding-right:5px;cursor:pointer;" /><span onclick = "javascript:scInfo('1051837718',this)" style="cursor:pointer;">收藏 </span>
+                            </td>
+                            <td style="height:45px;line-height: 45px;border-bottom:1px dashed #ead5b7;width:10%;text-align:center;display:none;" id="sc_yes" >
+                                <img onclick="javascript:qxSCInfo('1051837718',this);" src="/public/search/searchadvzbxx/test/images/souc_hua_11.jpg" style="vertical-align:-3px;padding-right:5px;cursor:pointer;" /><span onclick = "javascript:qxSCInfo('1051837718',this)" style="cursor:pointer;color:#ce5a0d;">已收藏 </span>
+                            </td>
+                            <input type="hidden" class="x_job" value="1051837718" id="sc1051837718"/>
+                            <td style="height:45px;line-height: 45px;border-bottom:1px dashed #ead5b7;width:10%;text-align: center">河北</td>
+                            <td style="height:45px;border-bottom:1px dashed #ead5b7;width:20%;text-align: center">交通运输</td>
+                            <td style="height:45px;line-height: 45px;border-bottom:1px dashed #ead5b7;width:10%;text-align: center"> 2016-08-05 </td> 
+                        </tr>
+                        
+                        <tr>
+                            <td style="height:45px;border-bottom:1px dashed #ead5b7;width:50%;">
+                                <a target="_blank" href="/zbgs/CejmiS.html" title="石家庄市城市轨道交通1号线一期和3号线一期首开段客运岗工装制服采购中标候选人公示" style="background:url(/public/search/searchadvzbxx/test/images/dian_11.jpg) no-repeat left center;padding-left:10px;">石家庄市<font color="red">城市轨道</font>交通1号线一期和3号线一期首开段客运岗工装制服采购中标候选人公示</a>
+                            </td> 
+                            <td style="height:45px;line-height: 45px;border-bottom:1px dashed #ead5b7;width:10%;text-align: center" id="sc_no" class="x_sc">
+                                <img onclick="javascript:scInfo('1051837715',this);" src="/public/search/searchadvzbxx/test/images/souc_11.jpg" style="vertical-align:-3px;padding-right:5px;cursor:pointer;" /><span onclick = "javascript:scInfo('1051837715',this)" style="cursor:pointer;">收藏 </span>
+                            </td>
+                            <td style="height:45px;line-height: 45px;border-bottom:1px dashed #ead5b7;width:10%;text-align:center;display:none;" id="sc_yes" >
+                                <img onclick="javascript:qxSCInfo('1051837715',this);" src="/public/search/searchadvzbxx/test/images/souc_hua_11.jpg" style="vertical-align:-3px;padding-right:5px;cursor:pointer;" /><span onclick = "javascript:qxSCInfo('1051837715',this)" style="cursor:pointer;color:#ce5a0d;">已收藏 </span>
+                            </td>
+                            <input type="hidden" class="x_job" value="1051837715" id="sc1051837715"/>
+                            <td style="height:45px;line-height: 45px;border-bottom:1px dashed #ead5b7;width:10%;text-align: center">河北</td>
+                            <td style="height:45px;border-bottom:1px dashed #ead5b7;width:20%;text-align: center">交通运输</td>
+                            <td style="height:45px;line-height: 45px;border-bottom:1px dashed #ead5b7;width:10%;text-align: center"> 2016-08-05 </td> 
+                        </tr>
+                        
+                        <tr>
+                            <td style="height:45px;border-bottom:1px dashed #ead5b7;width:50%;">
+                                <a target="_blank" href="/zbgg/Cejhaj.html" title="石家庄市城市轨道交通1号线110KV输变电新建工程电力通道综合在线监测系统设备安装项目招标公告" style="background:url(/public/search/searchadvzbxx/test/images/dian_11.jpg) no-repeat left center;padding-left:10px;">石家庄市<font color="red">城市轨道</font>交通1号线110KV输变电新建工程电力通道综合在线监测系统设备安装项目招标公告</a>
+                            </td> 
+                            <td style="height:45px;line-height: 45px;border-bottom:1px dashed #ead5b7;width:10%;text-align: center" id="sc_no" class="x_sc">
+                                <img onclick="javascript:scInfo('1051798215',this);" src="/public/search/searchadvzbxx/test/images/souc_11.jpg" style="vertical-align:-3px;padding-right:5px;cursor:pointer;" /><span onclick = "javascript:scInfo('1051798215',this)" style="cursor:pointer;">收藏 </span>
+                            </td>
+                            <td style="height:45px;line-height: 45px;border-bottom:1px dashed #ead5b7;width:10%;text-align:center;display:none;" id="sc_yes" >
+                                <img onclick="javascript:qxSCInfo('1051798215',this);" src="/public/search/searchadvzbxx/test/images/souc_hua_11.jpg" style="vertical-align:-3px;padding-right:5px;cursor:pointer;" /><span onclick = "javascript:qxSCInfo('1051798215',this)" style="cursor:pointer;color:#ce5a0d;">已收藏 </span>
+                            </td>
+                            <input type="hidden" class="x_job" value="1051798215" id="sc1051798215"/>
+                            <td style="height:45px;line-height: 45px;border-bottom:1px dashed #ead5b7;width:10%;text-align: center">河北</td>
+                            <td style="height:45px;border-bottom:1px dashed #ead5b7;width:20%;text-align: center">交通运输</td>
+                            <td style="height:45px;line-height: 45px;border-bottom:1px dashed #ead5b7;width:10%;text-align: center"> 2016-08-04 </td> 
+                        </tr>
+                        
+                        <tr>
+                            <td style="height:45px;border-bottom:1px dashed #ead5b7;width:50%;">
+                                <a target="_blank" href="/zbgg/Cej1CT.html" title="石家庄市城市轨道交通线网运营控制指挥中心机械停车采购安装招标公告" style="background:url(/public/search/searchadvzbxx/test/images/dian_11.jpg) no-repeat left center;padding-left:10px;">石家庄市<font color="red">城市轨道</font>交通线网运营控制指挥中心机械停车采购安装招标公告</a>
+                            </td> 
+                            <td style="height:45px;line-height: 45px;border-bottom:1px dashed #ead5b7;width:10%;text-align: center" id="sc_no" class="x_sc">
+                                <img onclick="javascript:scInfo('1051725568',this);" src="/public/search/searchadvzbxx/test/images/souc_11.jpg" style="vertical-align:-3px;padding-right:5px;cursor:pointer;" /><span onclick = "javascript:scInfo('1051725568',this)" style="cursor:pointer;">收藏 </span>
+                            </td>
+                            <td style="height:45px;line-height: 45px;border-bottom:1px dashed #ead5b7;width:10%;text-align:center;display:none;" id="sc_yes" >
+                                <img onclick="javascript:qxSCInfo('1051725568',this);" src="/public/search/searchadvzbxx/test/images/souc_hua_11.jpg" style="vertical-align:-3px;padding-right:5px;cursor:pointer;" /><span onclick = "javascript:qxSCInfo('1051725568',this)" style="cursor:pointer;color:#ce5a0d;">已收藏 </span>
+                            </td>
+                            <input type="hidden" class="x_job" value="1051725568" id="sc1051725568"/>
+                            <td style="height:45px;line-height: 45px;border-bottom:1px dashed #ead5b7;width:10%;text-align: center">河北</td>
+                            <td style="height:45px;border-bottom:1px dashed #ead5b7;width:20%;text-align: center">交通运输</td>
+                            <td style="height:45px;line-height: 45px;border-bottom:1px dashed #ead5b7;width:10%;text-align: center"> 2016-08-03 </td> 
+                        </tr>
+                        
+                        
+
+                    </tbody>
+                </table>
+
+                <!-- 分页 -->
+                <div id="pages" align="center" style="width:1003px;height:40px;line-height:30px;font-size:12px;margin-top:5px">
+                    
+                    <span><a href="/search/searchgj/zbcg?rp=30&categoryid=1%2C2&keywords=%E5%9F%8E%E5%B8%82%E8%BD%A8%E9%81%93&page=1&areaid=5%2C6%2C&table_type=1%2C2%2C4%2C5%2C&search_type=TITLE&b_date=year" >第一页</a></span>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    <a href="/search/searchgj/zbcg?rp=30&categoryid=1%2C2&keywords=%E5%9F%8E%E5%B8%82%E8%BD%A8%E9%81%93&page=2&areaid=5%2C6%2C&table_type=1%2C2%2C4%2C5%2C&search_type=TITLE&b_date=year" >2</a>
+                    
+                    
+                    
+                    <a href="/search/searchgj/zbcg?rp=30&categoryid=1%2C2&keywords=%E5%9F%8E%E5%B8%82%E8%BD%A8%E9%81%93&page=3&areaid=5%2C6%2C&table_type=1%2C2%2C4%2C5%2C&search_type=TITLE&b_date=year" >3</a>
+                    
+                    
+                    
+                    <a href="/search/searchgj/zbcg?rp=30&categoryid=1%2C2&keywords=%E5%9F%8E%E5%B8%82%E8%BD%A8%E9%81%93&page=4&areaid=5%2C6%2C&table_type=1%2C2%2C4%2C5%2C&search_type=TITLE&b_date=year" >4</a>
+                    
+                    
+                    
+                    <a href="/search/searchgj/zbcg?rp=30&categoryid=1%2C2&keywords=%E5%9F%8E%E5%B8%82%E8%BD%A8%E9%81%93&page=2&areaid=5%2C6%2C&table_type=1%2C2%2C4%2C5%2C&search_type=TITLE&b_date=year" >后一页</a>
+                    
+                    <a href="/search/searchgj/zbcg?rp=30&categoryid=1%2C2&keywords=%E5%9F%8E%E5%B8%82%E8%BD%A8%E9%81%93&page=6&areaid=5%2C6%2C&table_type=1%2C2%2C4%2C5%2C&search_type=TITLE&b_date=year" >最后一页</a>
+                    
+                    <input style="width:30px;" id="pageSet" />
+                    <a href="javascript:;" id="pageGo">跳转</a>
+                    <script type="text/javascript">
+                        $(function() {
+                            function flip() {
+                                var pr = $.trim($("#pageSet").val());
+                                if( pr=="" || isNaN(pr) || parseInt(pr)<1 || parseInt(pr)>6 )
+                                    alert("输入的页码无效");
+                                else
+                                    location.href = "/search/searchgj/zbcg?rp=30&categoryid=1%2C2&keywords=%E5%9F%8E%E5%B8%82%E8%BD%A8%E9%81%93&page=1&areaid=5%2C6%2C&table_type=1%2C2%2C4%2C5%2C&search_type=TITLE&b_date=year".replace("page=1","page=" + pr);
+                            }
+                            $("#pageGo").click(function() {
+                                flip();
+                            });
+                            $("#pageSet").keyup(function() {
+                                if(event.keyCode == 13)
+                                    flip();
+                            });
+                        });
+                    </script>
+                    
+                    <span style="margin-left:5px;">共 <font color="#2176bd">169</font>条记录,</span> <span style="margin-left:5px;">用时 <font color="#2176bd">0.925</font></span>ms
+                    <br/>
+                    
+                    
+                </div>
+                
+                
+            </td>
+        </tr>
+    </tbody>
+</table>
+            
+            
+            </div>
+        </div>
+        <!--footer-->
+        <div style="margin-top:20px;">         <div style="height:150px;font:100 12px/2 '宋体';clear:both;">
+            <div class="wei" style="height:33px;background:url(/public/info2/edit3/images/banwei.jpg);width:auto;">
+                <p style="width:1003px;margin:0 auto;line-height:33px;" class="weia">
+                <!--<a href="/zbw/main/gywm.jsp" style="color:#333" target="_blank" rel="nofollow">关于我们</a>|
+                    <a href="/zbw/main/navigation.jsp" style="color:#333" target="_blank" rel="nofollow">网站导航</a>|
+                    <a href="/zbw/guanggao/ggfw/index.html" style="color:#333" target="_blank" rel="nofollow">广告服务</a>|
+                    <a href="/zbw/main/zjdl.jsp" style="color:#333" target="_blank" rel="nofollow">友情链接</a>|
+                    <a href="/zbw/main/Copyright.jsp" style="color:#333" target="_blank" rel="nofollow">版权所有</a>|
+                    <a href="/zbw/main/zpxx.jsp" style="color:#333" target="_blank" rel="nofollow">招聘信息</a>|
+                    <a href="/zbw/main/help.jsp" style="color:#333" target="_blank" rel="nofollow">帮助信息</a>|
+                    <a href="/zbw/research/index.htm" style="color:#333" target="_blank" rel="nofollow">网上调查</a>| 
+                    <a href="/zbw/main/lxwm.html" style="color:#333" target="_blank" rel="nofollow">联系我们</a>-->
+                </p>
+            </div>
+            <div style="width:1003px;height:117px;margin:0 auto;">
+                <p class="left" style="width:490px;height:107px;padding-top:7px;color:#333;float:left;">
+                    Copyright © 2001-2015 采购与招标网<br/>
+                    Rights Reserved 京ICP备09089782号 <br/>
+                    本站网络实名/通用网址："采购与招标网"
+                </p> 
+               <div style="float:right;height:55px;padding-top:10px;width:365px;color:#333;">
+                    <div style="float:right;">业务咨询：400-006-6655 转 1 ； 售后服务：400-006-6655 转 2</div><br/>
+                    <div style="float:right;">发布信息：400-006-6655 转 3 ；</div>
+                </div>
+            </div>
+        </div> </div>
+        <!--footer-->
+    </div>
+    
+    <!--登录之前开始-->
+    <div id="mfhydl">
+        <div style="width:700px;height:38px;margin:0 auto;">
+            <div style="float:left;margin-right:7px;"> 您还未登录，请 <a href="javascript:;" onclick="xsdl();" style="color:#fd751a;text-decoration: underline;font-size:16px;">登录</a> 还没有账号？</div> 
+            <div id="zcrk01" style="background:url(/public/images/ljzc_03.jpg);width:93px;height:29px;border:none;cursor:pointer;float:left;margin-top:5px;margin-right:5px;">
+                
+                <a class="zhuceruku_c"  target="_blank" href="/cblcn/member.regist/regist_one?ggw_id=1627"></a>
+            </div>
+            <div style="float:left;padding-left:10px;"> 免费注册后可以在全文搜索查看免费信息。</div>
+        </div>
+    </div>
+    <!--登录之前结束-->
+    <!--登录之后开始--> 
+    <div id="mfhy">您目前是免费会员，您可以去全文搜索，查看免费信息！ <a href="/search/searchN/searchQ" target="_blank" style="color:#fd751a;text-decoration: underline;font-size:16px">进入全文搜索！</a></div>
+    <!--登录之后结束-->
+    <input type="hidden" id="login_dia" value="0"/>
+    <div id="hui" style="display:inline-block;position:absolute;top:0px;filter:alpha(opacity:60);opacity:0.4;background-color:#666;z-index:100;left:0px;"></div>
+    <!--弹出框-->  
+        <style type="text/css">
+        .yes_img{width:24px;height:24px;float:left;background:url(/public/info/new_regist/images/yes.jpg) no-repeat;}            
+        .tanc_lanmu{width:465px;height:auto;border:5px solid #fd9f60;position:absolute;left:33%;top:200px;font-size:12px;background:#fff;z-index:99999;zoom:1;display:none;}
+        .deng_biankuang{width:480px;height:318px
+                           ;background:#05a0f9;position:absolute;left:200px;_left:400px;top:200px;filter:alpha(opacity=60);opacity: 0.6;}
+        .denglu{width:465px;height:330px;background:#fff;}
+        .d_biaoti{width:465px;height:50px;}
+        .d_biao{width:395px;height:50px;line-height:50px;float:left;color:#ff5500;font-size:16px;font-weight:600;padding-left:25px;}
+        .d_guanbi{float:right;padding-top:10px;padding-right:10px}
+        .d_guanbi img{border:none}
+        .d_nr{width:460px;height:145px;}
+        .d_nr table tr th{font:100 14px/50px "Microsoft YaHei","SimSun";margin-bottom:15px;}
+        .name{width:258px;height:41px;background:url(/public/cblcn/wdpd/images/kuang_07.jpg) no-repeat;border:none;margin-bottom:10px;padding-left:5px;;line-height:41px;font-size:14px;*line-height:35px;outline:none}
+        .yanz{width:133px;height:36px;background:url(/public/cblcn/wdpd/images/yanzheng_10.jpg) no-repeat;border:none;margin-bottom:10px;padding-left:5px;;line-height:36px;font-size:14px;float:left;*line-height:35px;outline:none}
+        .biao_ming{padding-left:55px;display:block;float:left;}
+        .yz_tu{width:81px;height:30px;padding-top:5px;background:#006}
+        .qian{float:left;width:250px;height:40px;}
+        .yanz_tu{padding-top:5px}
+        .kbq a{font-size:12px;color:#0078ff;vertical-align:-5px;_vertical-align:-3px;}
+        .kbq a:hover{text-decoration:underline;}
+        .no_img{width:17px;height:17px;float:left;padding-top:5px;padding-left:102px;padding-right:4px;}
+        .no_font{height:28px;line-height:28px;padding-left:5px;color:#f00;font-size:12px;*line-height:32px;padding-left:3px;}
+        .anniu{width:450px;height:50px;padding-left:15px;overflow: hidden}
+        .d_dl{width:120px;height:50px;margin-left:100px;*display:inline;background:url(/public/cblcn/Ztmb/tl/images/denglu_03.jpg) no-repeat;border:none;float:left;display: block;cursor:pointer;display:inline-block;outline: none ;margin-top:15px}
+        .d_zc{width:131px;height:50px;line-height:50px;background:url(/public/cblcn/wdpd/images/zhuce_22.jpg) no-repeat;border:none;float:left;display: block;}
+
+        #mfhydl{
+            width:100%;height:38px ;background: url(/public/images/btm_bj_03.png) repeat-x;font-family:'微软雅黑';font-size:16px;color:#fff;line-height:38px;text-align:center;position:fixed;left:0px;bottom:0px ; _position: absolute;
+            _bottom:0;_top: expression(eval(document.documentElement.scrollTop+document.documentElement.clientHeight-this.offsetHeight-(parseInt(this.currentStyle.marginTop,0)||0)-(parseInt(this.currentStyle.marginBottom,0)||0)));margin-top:50px;display:none
+        ;overflow: hidden;}
+
+        #mfhy{
+            width:100%;height:38px ;background: url(/public/images/btm_bj_03.png) repeat-x;font-family:'微软雅黑';font-size:16px;color:#fff;line-height:38px;text-align:center;position:fixed;left:0px;bottom:0px;_position:absolute;
+             _bottom:0;_top: expression(eval(document.documentElement.scrollTop+document.documentElement.clientHeight-this.offsetHeight-(parseInt(this.currentStyle.marginTop,0)||0)-(parseInt(this.currentStyle.marginBottom,0)||0)));display:none;overflow: hidden
+        }
+        #zcrk02 a{text-decoration:underline}
+        #zcrk01 a{display:block;width:94px;height:28px}
+    </style>
+    <script>
+        document.write("<s"+"cript type='text/javascript' src='/public/search/zbw/js/search2.min.js?t="+Math.random()+"'></s"+"cript>");
+    </script>
+    <div class="tanc_lanmu" id="dialog-dl" style="display:none;">
+        <div id="login_k" class="denglu">
+            <div class="d_biaoti">
+                <div class="d_biao">请输入用户名和密码登录 </div>
+                <div class="d_guanbi"><a href="javascript:gb2_login()"><img src="/public/cblcn/dqpd/images/guanbi.jpg" alt=""/></a></div>
+            </div>
+            <div class="d_nr">
+                <form id="submitForm">
+                    <table border="0" cellpadding="0" cellspacing="0">
+                        <tbody>
+                            <tr>
+                                <th width="100" valign="middle" height="50" align="right">用户名：</th>
+                                <td align="left" style="width:310px;height:41px;"><input type="text" id="name" class="name" /></td>
+                                <td width="24"></td>
+                            </tr>
+                            <tr>
+                                <th valign="middle" height="50" align="right">密&nbsp;&nbsp;码：</th>
+                                <td style="width:310px;height:41px;"><input type="password" id="password" class="name"/></td>
+                                <td width="24"></td>
+                            </tr>
+                            <tr>
+                                <th valign="middle" height="50" align="right">验证码：</th>
+                                <td width="310"><input type="text" id="yzm" class="yanz" onkeyup="aotocheck_yzm();"/>
+                                    <input type="hidden" value="169589c0-5e79-4216-8ee9-e04f797e30bc" id="randomID"/>
+                                    <img style="width:80px;height:41px;display:block;float:left;" onclick="changeI()" src="/cblcn/member.login/captcha?randomID=169589c0-5e79-4216-8ee9-e04f797e30bc" id="img_random" alt=""/>
+                                    <span class="kbq"><a href="javascript:changeI()">看不清？换一张</a></span>
+                                </td>
+                                <td width="24"><div id="yzm_ts_i"></div></td>
+                            </tr>
+                            <tr>
+                                <td width="100"></td>
+                                <td colspan="2">
+                                    <div class="no_font" style="vertical-align:middle;">
+                                        <input type="checkbox" style="vertical-align:-2px;" id="ck" checked/>
+                                        <span style="padding-left:5px;color:#666;">记住用户名</span>
+                                        <a href="/cblcn/zzmb/zhmm_index" target="_blank" style="color:#ff3333;margin-left:100px;">忘记密码？</a>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <div id="cuo" class="no_img" style="display:none;"><img src="/public/cblcn/dqpd/images/cuo_18.jpg" alt=""/></div> 
+                                    <div id="sc" class="no_font"></div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <input type="button" value=" " class="d_dl" onclick="login_submit()"/>
+                                    <span id="zcrk02" style="line-height:60px;">
+                                        还没有用户名？
+                                    </span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </form>
+            </div>
+        </div>
+    </div>
+    <input type="hidden" id="jishi" />
+    <!--弹出框-->
+    <script src="/public/search/zbw/js/searchgj.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="/cblcn/ZhuCeRuKou/searchG"></script>
+    <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?0bf7d2e4ce4104fa77e95b012f750771";
+        var s = document.getElementsByTagName("script")[0]; 
+        s.parentNode.insertBefore(hm,s);
+    })();
+
+    (function(){
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp,s);
+    })();
+
+    var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+    document.write(unescape("%3Cspan id='cnzz_stat_icon_1260144063'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s95.cnzz.com/z_stat.php%3Fid%3D1260144063' type='text/javascript'%3E%3C/script%3E"));
+    setTimeout("$(\"span:last\").hide();",500);
+</script>
+</body>
+</html>
