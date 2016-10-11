@@ -157,6 +157,7 @@ class BidSpider(scrapy.Spider):
 
     def parse_resolve(self, response):
         sel = Selector(response)
+        str_xpath = 
 
     @staticmethod
     def parse_operate_mysql():
